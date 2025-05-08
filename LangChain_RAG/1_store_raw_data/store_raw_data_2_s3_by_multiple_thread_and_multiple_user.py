@@ -5,10 +5,10 @@
     방법: 
         raw data에는 구글 api를 사용해서 얻은 값들이다. 이때, multi-thread를 사용하여 빠르게 수집한다.
         그 값들에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
-        이 값들은 json 형식으로 저장된다.
+        이 값들은 json 형식으로 S3에 저장된다.
         이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 S3에 저장된다.
     후속 처리: 
-        store_raw_data_2_s3_by_multiple_thread.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
+        store_raw_data_2_s3_by_multiple_thread_and_multiple_user.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
 '''
 
 import requests
@@ -20,7 +20,6 @@ from dotenv import load_dotenv
 import boto3
 from concurrent.futures import ThreadPoolExecutor
 import sys
-import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from LangChain_RAG.utils import setup_logger
 import math
