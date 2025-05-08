@@ -11,7 +11,7 @@ load_dotenv()
 
 class PlaceDataCollector:
     def __init__(self):
-        self.google_api_key = os.getenv('TEST_GOOGLE_API_KEY')
+        self.google_api_key = os.getenv('KHJ_GOOGLE_API_KEY1')
         # 서울시청 좌표로 고정
         self.lat = 37.5665
         self.lng = 126.9780
@@ -124,10 +124,11 @@ class PlaceDataCollector:
                 "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
                 params=params
             ).json()
-            
+            print(resp)
             # 결과에서 첫 번째 place_id만 추출
             if True:
-                place_id = "ChIJv3WOusKifDURkNGSz-MjBAw"
+                # place_id = "ChIJv3WOusKifDURkNGSz-MjBAw"
+                place_id = resp.get("results", [])[0].get("place_id")
                 if place_id:
                     # print(f"Nearby Search 결과: 첫 번째 장소 발견")
                     total_places += 1
@@ -141,7 +142,7 @@ class PlaceDataCollector:
                         self.print_place_details(details)
             
             # API 호출 제한을 위한 대기
-            # time.sleep(0.1)
+            time.sleep(0.1)
         
         print("\n=== 수집 결과 요약 ===")
         # print(f"총 Nearby Search API 호출: {num_iterations}회")
