@@ -19,15 +19,36 @@ LangChain과 RAG를 활용하여, 랜덤 여행 계획을 세워주는 프로젝
 
 ==================== 구성 파일 ====================
 
-raw_data_load.py
+store_raw_data_2_s3_by_multiple_thread.py
 
-1.
-    목적: 
-        raw data를 load하는데 사용된다.
-    방법: 
-        raw data에는 네이버 장소 api를 사용해서 얻은 자료일 수 있고, pdf일 수도 있고, 여러 경우의 수가 있다.
-    후속 처리: 
-        raw_data_load로 얻은 raw data는 raw_data_split을 통해 적절히 분할된다.
+1. 목적:
+    Google Places API로 수집한 raw 데이터를 멀티스레드로 빠르게 S3에 저장합니다.
+2. 방법:
+    - 지정한 위·경도 범위(start_lat~end_lat, start_lng~end_lng)를 격자(step_deg) 단위로 순회합니다.
+    - 각 격자점에서 radius(m)를 반경으로 nearbysearch를 호출해 place_id를 수집합니다.
+    - 수집된 place_id를 ThreadPoolExecutor로 병렬 상세 조회 후 대한민국 필터링합니다.
+    - (위도,경도) 조합을 파일명으로 JSON과 전처리된 텍스트를 S3에 업로드합니다.
+3. 주요 파라미터:
+    - start_lat, end_lat: 검색할 위도 범위 (기본 33.0~38.5)
+    - start_lng, end_lng: 검색할 경도 범위 (기본 125.0~130.0)
+    - step_deg: 격자 간격(도, 기본 0.018)
+    - radius: 검색 반경(미터, 기본 1500)
+    - max_grids: 최대 격자점 개수(None=전체 범위)
+4. 실행 예시:
+    # 전체 범위 기본 호출
+    collector.get_almost_korean_places()
+
+    # 3명 분할 실행
+    MSJ) collector.get_almost_korean_places(start_lat=33.0, end_lat=34.8, start_lng=125.0, end_lng=130.0)
+    KMS) collector.get_almost_korean_places(start_lat=34.8, end_lat=36.6, start_lng=125.0, end_lng=130.0)
+    KMW) collector.get_almost_korean_places(start_lat=36.6, end_lat=38.5, start_lng=125.0, end_lng=130.0)
+
+    # 5명 분할 실행
+    MSJ) collector.get_almost_korean_places(start_lat=33.0, end_lat=34.1, start_lng=125.0, end_lng=130.0)
+    KMS) collector.get_almost_korean_places(start_lat=34.1, end_lat=35.2, start_lng=125.0, end_lng=130.0)
+    KMW) collector.get_almost_korean_places(start_lat=35.2, end_lat=36.3, start_lng=125.0, end_lng=130.0)
+    CEB) collector.get_almost_korean_places(start_lat=36.3, end_lat=37.4, start_lng=125.0, end_lng=130.0)
+    KHJ) collector.get_almost_korean_places(start_lat=37.4, end_lat=38.5, start_lng=125.0, end_lng=130.0)
 
 raw_data_split.py
 
