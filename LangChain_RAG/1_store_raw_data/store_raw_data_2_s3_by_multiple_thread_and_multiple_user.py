@@ -19,15 +19,18 @@ import os
 from dotenv import load_dotenv
 import boto3
 from concurrent.futures import ThreadPoolExecutor
-from utils import setup_logger
-import time
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from LangChain_RAG.utils import setup_logger
 import math
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
 
-# Log 폴더 생성
-log_dir = os.path.join(os.path.dirname(__file__), 'Log')
+# 현재 폴더 아래에 LOG 폴더 생성
+current_dir = os.path.dirname(os.path.abspath(__file__))
+log_dir = os.path.join(current_dir, 'LOG')
 os.makedirs(log_dir, exist_ok=True)
 
 # 타임스탬프를 포함한 로그 파일명 생성
@@ -298,7 +301,6 @@ class PlaceDataCollector:
         logger.info(f"\tS3에 전처리된 격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 데이터 업로드 완료: s3://{self.s3_bucket_name}/{pre_key}")
 
 
-
 def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
     """
     장소 데이터를 한 줄의 문장 형식으로 전처리합니다.
@@ -369,7 +371,6 @@ def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
         sentences.append(sentence)
     
     return sentences
-
 
 
 def main():

@@ -1,11 +1,23 @@
-# 구글 장소 api 가격 정도 확인 테스트 코드
+'''
+1.
+    목적: 
+        구글 장소 API의 가격 정보를 테스트하는데 사용된다.
+    방법: 
+        구글 장소 API를 사용하여 특정 위치(서울시청)에서 1개의 place_id를 추출하고,
+        그 place_id에 대한 상세 정보를 수집한다.
+        즉, Nearby Search API를 1번, Place Details API를 1번 호출한다.
+        이 함수 collect_places를 총 num_iterations번 반복하여 장소 정보를 수집한다.
+        수집된 정보에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
+        이 정보들은 콘솔에 출력되어 확인된다.
+    후속 처리: 
+        테스트 결과를 바탕으로 실제 데이터 수집 코드를 작성한다.
+'''
+
 from typing import Dict, List
 import requests
 import os
 from dotenv import load_dotenv
 import time
-import json
-
 # .env 파일에서 환경 변수 로드
 load_dotenv()
 
@@ -16,6 +28,7 @@ class PlaceDataCollector:
         self.lat = 37.5665
         self.lng = 126.9780
         self.radius = 1500
+
 
     def get_google_place_details(self, place_id: str) -> Dict:
         """
@@ -34,6 +47,7 @@ class PlaceDataCollector:
         }
         resp = requests.get(url, params=params).json()
         return resp.get("result", {})
+
 
     def print_place_details(self, details: Dict):
         """
@@ -98,6 +112,7 @@ class PlaceDataCollector:
         
         print("\n=====================")
 
+
     def collect_places(self, num_iterations: int):
         """
         지정된 횟수만큼 반복하여 장소 정보를 수집합니다.
@@ -142,13 +157,14 @@ class PlaceDataCollector:
                         self.print_place_details(details)
             
             # API 호출 제한을 위한 대기
-            time.sleep(0.1)
+            # time.sleep(0.1)
         
         print("\n=== 수집 결과 요약 ===")
         # print(f"총 Nearby Search API 호출: {num_iterations}회")
         print(f"총 발견된 장소 수: {total_places}개")
         print(f"총 Place Details API 호출: {total_details}회")
         print("=====================")
+
 
 def main():
     collector = PlaceDataCollector()
@@ -158,6 +174,7 @@ def main():
     
     # 장소 수집 실행
     collector.collect_places(num_iterations)
+
 
 if __name__ == "__main__":
     main()
