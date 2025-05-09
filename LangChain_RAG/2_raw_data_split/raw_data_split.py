@@ -1,12 +1,13 @@
 '''
 2.
     목적: 
-        store_raw_data_2_s3_by_multiple_thread.py로 얻은 raw data를 적절히 분할한다. (이렇게 문서를 작은 조각으로 나누는 이유는 LLM 모델의 입력 토큰의 개수가 정해져 있기 때문)
-    방법: 
-        구역 단위(구단위 or 시단위)로 장소 데이터를 split 하거나, 300줄로 split 하거나 여러 경우의 수가 있다.
-        이 부분에서 여러 경우로 테스트 해봐서 최적의 split 방법을 골라야한다.
+        store_raw_data.py로 얻은 raw data를 적절히 분할한다. (이렇게 문서를 작은 조각으로 나누는 이유는 LLM 모델의 입력 토큰의 개수가 정해져 있기 때문)
+    메소드: 
+        1. 파일 하나에 저장된 장소 개수를 반환한다.
+        2. 파일 하나에 저장된 가장 긴 장소 문장의 단어 수를 반환한다.
+        3. 파일 하나에 저장된 모든 장소 목록을 반환한다.
     후속 처리: 
-        split된 data(split data)를 embedding.py를 통해 vector로 embedding한다.
+        어떤 장소하나를 가져오기 위해서, 메소드 3번 get_all_places를 사용한다.
 '''
 
 import boto3

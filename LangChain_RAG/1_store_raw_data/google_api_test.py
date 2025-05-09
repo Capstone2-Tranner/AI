@@ -23,7 +23,7 @@ load_dotenv()
 
 class PlaceDataCollector:
     def __init__(self):
-        self.google_api_key = os.getenv('KHJ_GOOGLE_API_KEY1')
+        self.google_api_key = os.getenv('GOOGLE_API_KEY_10')
         # 서울시청 좌표로 고정
         self.lat = 37.5665
         self.lng = 126.9780

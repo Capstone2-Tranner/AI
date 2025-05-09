@@ -1,65 +1,46 @@
-==================== 목표 ====================
+# 목표
 
 LangChain과 RAG를 활용하여, 랜덤 여행 계획을 세워주는 프로젝트이다.
 
-==================== 개요 ====================
+# 개요
 
-백엔드에서 넘겨받는 정보는
-    필수:
-        1. 인원수
-        2. 날짜
-        3. 최대 금액
-    선택:
-        1. 교통수단
-        2. 여행 목적 (선호/비선호) - 힐링, 관광, 액티비티, 식사, 핫플, 가족 여행, 커플, 호캉스, 쇼핑, 교육
-        3. 숙소 유형 (선호/비선호) - 호텔, 펜션, 에어비앤비, 게스트하우스
-        4. 선호 음식 (선호/비선호) - 현지 맛집, 분위기 좋은 카페, 특산물, 고급 레스토랑
-이고,
-넘겨 받은 정보를 활용하여 프롬프트 작성하고, RAG를 활용하여, 랜덤 여행 계획을 세워준다.
+    백엔드에서 넘겨받는 정보는
+        필수:
+            1. 인원수
+            2. 날짜
+            3. 최대 금액
+        선택:
+            1. 교통수단
+            2. 여행 목적 (선호/비선호) - 힐링, 관광, 액티비티, 식사, 핫플, 가족 여행, 커플, 호캉스, 쇼핑, 교육
+            3. 숙소 유형 (선호/비선호) - 호텔, 펜션, 에어비앤비, 게스트하우스
+            4. 선호 음식 (선호/비선호) - 현지 맛집, 분위기 좋은 카페, 특산물, 고급 레스토랑
+    이고,
+    넘겨 받은 정보를 활용하여 프롬프트 작성하고, RAG를 활용하여, 랜덤 여행 계획을 세워준다.
 
-==================== 구성 파일 ====================
+# 구성 파일
 
-store_raw_data_2_s3_by_multiple_thread.py
+## store_raw_data.py
 
-1. 목적:
-    Google Places API로 수집한 raw 데이터를 멀티스레드로 빠르게 S3에 저장합니다.
-2. 방법:
-    - 지정한 위·경도 범위(start_lat~end_lat, start_lng~end_lng)를 격자(step_deg) 단위로 순회합니다.
-    - 각 격자점에서 radius(m)를 반경으로 nearbysearch를 호출해 place_id를 수집합니다.
-    - 수집된 place_id를 ThreadPoolExecutor로 병렬 상세 조회 후 대한민국 필터링합니다.
-    - (위도,경도) 조합을 파일명으로 JSON과 전처리된 텍스트를 S3에 업로드합니다.
-3. 주요 파라미터:
-    - start_lat, end_lat: 검색할 위도 범위 (기본 33.0~38.5)
-    - start_lng, end_lng: 검색할 경도 범위 (기본 125.0~130.0)
-    - step_deg: 격자 간격(도, 기본 0.018)
-    - radius: 검색 반경(미터, 기본 1500)
-    - max_grids: 최대 격자점 개수(None=전체 범위)
-4. 실행 예시:
-    # 전체 범위 기본 호출
-    collector.get_almost_korean_places()
-
-    # 3명 분할 실행
-    MSJ) collector.get_almost_korean_places(start_lat=33.0, end_lat=34.8, start_lng=125.0, end_lng=130.0)
-    KMS) collector.get_almost_korean_places(start_lat=34.8, end_lat=36.6, start_lng=125.0, end_lng=130.0)
-    KMW) collector.get_almost_korean_places(start_lat=36.6, end_lat=38.5, start_lng=125.0, end_lng=130.0)
-
-    # 5명 분할 실행
-    MSJ) collector.get_almost_korean_places(start_lat=33.0, end_lat=34.1, start_lng=125.0, end_lng=130.0)
-    KMS) collector.get_almost_korean_places(start_lat=34.1, end_lat=35.2, start_lng=125.0, end_lng=130.0)
-    KMW) collector.get_almost_korean_places(start_lat=35.2, end_lat=36.3, start_lng=125.0, end_lng=130.0)
-    CEB) collector.get_almost_korean_places(start_lat=36.3, end_lat=37.4, start_lng=125.0, end_lng=130.0)
-    KHJ) collector.get_almost_korean_places(start_lat=37.4, end_lat=38.5, start_lng=125.0, end_lng=130.0)
-
-raw_data_split.py
-
-2.
     목적: 
-        raw_data_load로 얻은 raw data를 적절히 분할한다.
+        raw data를 store하는데 사용된다.
     방법: 
-        구역 단위(구단위 or 시단위)로 장소 데이터를 split 하거나, 300줄로 split 하거나 여러 경우의 수가 있다.
-        이 부분에서 여러 경우로 테스트 해봐서 최적의 split 방법을 골라야한다.
-    후속 처리:
-       split된 data(split data)를 embedding.py를 통해 vector로 embedding한다.
+        raw data에는 구글 api를 사용해서 얻은 값들이다.
+        그 값들에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
+        이 값들은 json 형식으로 S3에 저장된다.
+        이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 S3에 저장된다.
+    후속 처리: 
+        store_raw_data.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
+
+## raw_data_split.py
+
+    목적: 
+        store_raw_data.py로 얻은 raw data를 적절히 분할한다. (이렇게 문서를 작은 조각으로 나누는 이유는 LLM 모델의 입력 토큰의 개수가 정해져 있기 때문)
+    메소드: 
+        1. 파일 하나에 저장된 장소 개수를 반환한다.
+        2. 파일 하나에 저장된 가장 긴 장소 문장의 단어 수를 반환한다.
+        3. 파일 하나에 저장된 모든 장소 목록을 반환한다.
+    후속 처리: 
+        어떤 장소하나를 가져오기 위해서, 메소드 3번 get_all_places를 사용한다.
 
 embedding.py
 

@@ -3,12 +3,12 @@
     목적: 
         raw data를 store하는데 사용된다.
     방법: 
-        raw data에는 구글 api를 사용해서 얻은 값들이다. 이때, multi-thread를 사용하여 빠르게 수집한다.
+        raw data에는 구글 api를 사용해서 얻은 값들이다.
         그 값들에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
         이 값들은 json 형식으로 S3에 저장된다.
         이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 S3에 저장된다.
     후속 처리: 
-        store_raw_data_2_s3_by_multiple_thread_and_multiple_user.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
+        store_raw_data.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
 '''
 
 import requests
@@ -39,10 +39,10 @@ logger = setup_logger(__name__, log_file=log_file)
 
 def make_korea_partitions():
     # 제주도 bounding box (Approx.)
-    jeju = ((33.11, 126.11), (33.71, 126.95))
+    jeju = ((33.288916, 126.162231), (33.458692, 126.942271))
 
     # 본토 전체 bounding box
-    mainland = ((33.0, 125.0), (38.5, 130.0))
+    mainland = ((34.354804, 126.128783), (38.614225, 128.356447))
     lat0, lng0 = mainland[0]
     lat1, lng1 = mainland[1]
 
@@ -114,11 +114,15 @@ class PlaceDataCollector:
     구글 api를 통해 장소 정보를 수집하고 통합
     """
 
-    def __init__(self):
-        # 환경 변수에서 API 키 및 S3 버킷 이름을 가져옴
-        self.google_api_key = os.getenv('TEST_GOOGLE_API_KEY')
+    def __init__(self, worker_id: int):
+        # worker_id에 따른 Google API 키 설정
+        self.google_api_key = os.getenv(f'GOOGLE_API_KEY_{worker_id}')
+        if not self.google_api_key:
+            raise ValueError(f"GOOGLE_API_KEY_{worker_id} not found in environment variables")
+            
+        # S3 버킷 이름을 가져옴
         self.s3_bucket_name = os.getenv('S3_BUCKET_NAME')
-        # AWS 자격증명 및 리전 설정2
+        # AWS 자격증명 및 리전 설정
         aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
         aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
         aws_region = os.getenv('AWS_REGION', 'ap-northeast-2')
@@ -152,7 +156,7 @@ class PlaceDataCollector:
         resp = requests.get(url, params=params).json()
         return resp.get("result", {})
 
-
+    # Nearby Search API를 1번 사용, 최대 20개의 place_id를 details API로 조회
     def get_almost_korean_places(
         self,
         start_lat: float = 33.0,
@@ -373,31 +377,34 @@ def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
 
 
 def main():
-
-    collector = PlaceDataCollector()
+    # 그리드당 Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
     grids_per_partition = 500
 
     try:
         # 파티션별로 step_deg와 radius를 동적 계산하여 호출
         partitions = make_korea_partitions()
 
-        # 각 작업자의 파티션 범위 지정
-        worker_id = 1  # 1~5 사이의 값으로 변경하여 사용
-        partitions_per_worker = 2
-        start_idx = (worker_id - 1) * partitions_per_worker
-        end_idx = min(start_idx + partitions_per_worker, len(partitions))
+        # 1부터 10까지 순차적으로 처리
+        for worker_id in range(1, 11):  # 1~10
+            print(f"\n=== Processing Worker {worker_id} ===")
+            
+            # 각 worker_id에 맞는 collector 인스턴스 생성
+            collector = PlaceDataCollector(worker_id)
+            
+            partition_idx = worker_id - 1  # worker_id에 해당하는 파티션 인덱스
 
-        # 해당 작업자에게 할당된 파티션만 처리
-        for i in range(start_idx, end_idx):
-            sw, ne = partitions[i]
+            # 해당 작업자에게 할당된 파티션만 처리
+            sw, ne = partitions[partition_idx]
             step_deg_val = compute_step_deg(sw, ne, grids_per_partition)
             radius_val = compute_overlap_radius(sw, ne, step_deg_val)
+            print(f"worker_id: {worker_id}, partition_idx: {partition_idx}")
             print(f"sw: {sw}, ne: {ne}, step_deg_val: {step_deg_val}, radius_val: {radius_val}")
             collector.get_almost_korean_places(
                 start_lat=sw[0], end_lat=ne[0],
                 start_lng=sw[1], end_lng=ne[1],
                 step_deg=step_deg_val, radius=radius_val
             )
+            print(f"=== Completed Worker {worker_id} ===\n")
     except Exception as e:
         logger.error(f"데이터 수집 중 오류 발생: {e}")
 
