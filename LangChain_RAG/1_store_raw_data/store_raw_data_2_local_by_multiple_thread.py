@@ -132,6 +132,16 @@ class PlaceDataCollector:
                         params=params
                     ).json()
 
+                    # # 반환된 JSON의 최상위 키만 출력
+                    # print("Nearby Search Response Keys:", list(resp.keys()))
+                    # # results 요소의 필드 키 목록 출력
+                    # if 'results' in resp and resp['results']:
+                    #     result_keys = set()
+                    #     for itm in resp['results']:
+                    #         result_keys.update(itm.keys())
+                    #     print("Nearby Search Results item keys:", sorted(result_keys))
+                    print(resp)
+                    
                     # place_id 수집 및 병렬 상세 조회
                     page_pids = []
                     for item in resp.get("results", []):
@@ -147,6 +157,7 @@ class PlaceDataCollector:
                                 current_grid_places.append(detail)
                                 new_count += 1
 
+                    break # msj
                     # 다음 페이지 토큰 확인
                     next_page_token = resp.get("next_page_token")
                     if not next_page_token:
@@ -315,6 +326,7 @@ def main():
         # 데이터 수집 및 그리드 단위로 저장
         # collector.get_almost_korean_places(start_lat=33.0, end_lat=38.5, start_lng=125.0, end_lng=130.0)
         # collector.get_almost_korean_places()
+        # collector.get_almost_korean_places(start_lat=37.3, end_lat=37.5, start_lng=128.0, end_lng=128.5)
         collector.get_almost_korean_places(step_deg=0.1, radius=15000, max_grids=25)
     except Exception as e:
         logger.error(f"데이터 수집 중 오류 발생: {e}")

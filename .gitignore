@@ -1,1 +1,7 @@
 .env 
+
+# LangChain_RAG 디렉토리 아래의 특정 폴더 제외
+LangChain_RAG/__pycache__/
+LangChain_RAG/data_지우지마/
+LangChain_RAG/data_local/
+LangChain_RAG/Log/ 
