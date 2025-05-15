@@ -135,6 +135,8 @@ class PlaceDataCollector:
         )
         # 전역 중복 방지를 위한 place_id 집합
         self.seen_ids = set()
+        # 전체 수집된 장소 수 추적
+        self.total_places = 0
 
 
     def get_google_place_details(self, place_id: str) -> Dict:
@@ -192,10 +194,11 @@ class PlaceDataCollector:
             max_grids = lat_steps * lng_steps
         
         print(f"max_grids: {max_grids}")
-        return
     
         # 격자점 카운터
         grid_counter = 0
+        # 전체 수집된 장소 수 초기화
+        self.total_places = 0
 
         # 위도 방향 순회
         lat = min_lat
@@ -243,6 +246,7 @@ class PlaceDataCollector:
                         if "대한민국" in detail.get("formatted_address", ""):
                             current_grid_places.append(detail)
                             new_count += 1
+                            self.total_places += 1
 
                 logger.info(f"\t이 격자점에서 수집된 신규 장소 개수: {new_count}개")
                 
@@ -255,6 +259,8 @@ class PlaceDataCollector:
                 grid_counter += 1
             # 다음 위도로 이동
             lat += step_deg
+        
+        logger.info(f"파티션 처리 완료: 총 {self.total_places}개의 장소 수집됨")
 
 
     def get_multiple_place_details_parallel(self, place_ids: List[str], max_workers: int = 5) -> List[Dict]:
@@ -378,15 +384,17 @@ def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
 
 def main():
     # 그리드당 Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
-    # 그리드가 500개면 총 10000개의 장소 정보 수집, 10개의 파티션이면, 총 100000개의 장소 정보 수집
-    grids_per_partition = 500
+    # grids_per_partition = 500  # 500개의 격자점 처리 => Nearby Search 호출 500회, detail API 호출 10,000회 => Nearby Search 무료, detail API 90 달러
+    # grids_per_partition = 1000  # 1000개의 격자점 처리 => Nearby Search 호출 1,000회, detail API 호출 20,000회 => Nearby Search 무료, detail API 180 달러
+    grids_per_partition = 1500  # 1500개의 격자점 처리 => Nearby Search 호출 1,500회, detail API 호출 30,000회 => Nearby Search 무료, detail API 270 달러
+    # grids_per_partition = 2000  # 2000개의 격자점 처리 => Nearby Search 호출 2,000회, detail API 호출 40,000회 => Nearby Search 무료, detail API 360 달러
 
     try:
         # 파티션별로 step_deg와 radius를 동적 계산하여 호출
         partitions = make_korea_partitions()
 
         # 1부터 10까지 순차적으로 처리
-        for worker_id in range(1,2):  # 1~10
+        for worker_id in range(10, 11):  # 1~10
             print(f"\n=== Processing Worker {worker_id} ===")
             
             # 각 worker_id에 맞는 collector 인스턴스 생성
