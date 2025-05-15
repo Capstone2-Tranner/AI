@@ -1,7 +1,82 @@
-.env 
+# ───────────────────────────────
+# 기본: 운영체제 & 에디터 임시파일
+# ───────────────────────────────
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+ehthumbs.db
+# VS Code 설정 백업
+.vscode/*
+!.vscode/settings.json   # 팀 공용 설정만 남기고 싶으면 주석 해제
+!.vscode/extensions.json
 
-# LangChain_RAG 디렉토리 아래의 특정 폴더 제외
-LangChain_RAG/__pycache__/
-LangChain_RAG/data_지우지마/
-LangChain_RAG/data_local/
-LangChain_RAG/Log/ 
+# ───────────────────────────────
+# Python / 가상환경
+# ───────────────────────────────
+# 가상환경(폴더명이 .venv, venv, env 등일 때)
+.venv/
+env/
+venv/
+# 파이썬 컴파일 캐시
+__pycache__/
+*.py[cod]
+# mypy / coverage / pytest
+.mypy_cache/
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# ───────────────────────────────
+# 빌드·배포 산출물
+# ───────────────────────────────
+dist/
+build/
+*.egg-info/
+*.wheel
+# Docker
+*.log
+docker-compose.override.yml
+
+# ───────────────────────────────
+# 환경 변수 / 민감 정보
+# ───────────────────────────────
+.env
+.env.*
+
+# ───────────────────────────────
+# FastAPI & Swagger
+# ───────────────────────────────
+# 자동 생성된 OpenAPI / docs (있을 경우)
+openapi.json
+redoc_static/
+
+# ───────────────────────────────
+# LangChain_RAG: 실험·로컬 데이터
+# ───────────────────────────────
+# (1) 학습/임베딩 결과물
+langchain_rag/data_local/
+langchain_rag/embedding/**/LOG/
+# (2) 캐시·임시
+langchain_rag/**/__pycache__/
+# (3) 주의: 다음 폴더는 *KEEP*
+!langchain_rag/data_지우지마/**
+
+# ───────────────────────────────
+# AWS / 파이썬 패키지 빌드
+# ───────────────────────────────
+.aws/
+pip-wheel-metadata/
+
+# ───────────────────────────────
+# Jupyter
+# ───────────────────────────────
+*.ipynb_checkpoints
+*.ipynb
+.ipynb_checkpoints/
+
+# ───────────────────────────────
+# 기타 팀 규칙에 따라 추가
+# ───────────────────────────────
+# secrets.yaml
+# *.key

@@ -1,0 +1,407 @@
+'''
+1.
+    목적: 
+        raw data를 store하는데 사용된다.
+    방법: 
+        raw data에는 구글 api를 사용해서 얻은 값들이다. 이때, multi-thread를 사용하여 빠르게 수집한다.
+        그 값들에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
+        이 값들은 json 형식으로 S3에 저장된다.
+        이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 S3에 저장된다.
+    후속 처리: 
+        store_raw_data_2_s3_by_multiple_thread_and_multiple_user.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
+'''
+
+import requests
+import json
+from datetime import datetime
+from typing import Dict, List
+import os
+from dotenv import load_dotenv
+import boto3
+from concurrent.futures import ThreadPoolExecutor
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from LangChain_RAG.utils import setup_logger
+import math
+
+# .env 파일에서 환경 변수 로드
+load_dotenv()
+
+# 현재 폴더 아래에 LOG 폴더 생성
+current_dir = os.path.dirname(os.path.abspath(__file__))
+log_dir = os.path.join(current_dir, 'LOG')
+os.makedirs(log_dir, exist_ok=True)
+
+# 타임스탬프를 포함한 로그 파일명 생성
+timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+log_file = os.path.join(log_dir, f'store_raw_data_{timestamp}.log')
+logger = setup_logger(__name__, log_file=log_file)
+
+def make_korea_partitions():
+    # 제주도 bounding box (Approx.)
+    jeju = ((33.11, 126.11), (33.71, 126.95))
+
+    # 본토 전체 bounding box
+    mainland = ((33.0, 125.0), (38.5, 130.0))
+    lat0, lng0 = mainland[0]
+    lat1, lng1 = mainland[1]
+
+    # 3x3 그리드로 분할 → 9개 본토 파티션
+    lat_steps = 3
+    lng_steps = 3
+    lat_size = (lat1 - lat0) / lat_steps
+    lng_size = (lng1 - lng0) / lng_steps
+
+    parts = []
+    for i in range(lat_steps):
+        for j in range(lng_steps):
+            sw = (lat0 + i * lat_size, lng0 + j * lng_size)
+            ne = (lat0 + (i+1) * lat_size, lng0 + (j+1) * lng_size)
+            parts.append((sw, ne))
+
+    # 제주도를 마지막 파티션으로 추가 → 총 10개
+    parts.append(jeju)
+    return parts    # length == 10
+
+
+def compute_step_deg(sw, ne, grids_per_partition=250):
+    lat0, lng0 = sw
+    lat1, lng1 = ne
+    lat_range = lat1 - lat0
+    lng_range = lng1 - lng0
+
+    # 위도와 경도의 비율을 계산
+    ratio = lat_range / lng_range
+    
+    # 위도와 경도의 칸 수를 비율에 맞게 계산
+    # lat_steps * lng_steps = grids_per_partition이 되도록
+    lat_steps = int(math.sqrt(grids_per_partition * ratio))
+    lng_steps = int(grids_per_partition / lat_steps)
+    
+    # 최소 2칸은 보장
+    lat_steps = max(2, lat_steps)
+    lng_steps = max(2, lng_steps)
+    
+    # 각 방향의 step_deg 계산
+    step_lat = lat_range / (lat_steps - 1)
+    step_lng = lng_range / (lng_steps - 1)
+    
+    # 더 큰 값을 사용하여 그리드 수를 줄임
+    return max(step_lat, step_lng)
+
+
+def compute_overlap_radius(sw, ne, step_deg, overlap_ratio=0.1):
+    """
+    격자 간 step_deg에 기반하여 반경을 계산합니다. 대각선 반경이 서로 살짝 겹치도록 설정합니다.
+    overlap_ratio: 반경에 추가되는 겹침 비율 (예: 0.2 = 20%)
+    """
+    lat0, lng0 = sw
+    lat1, lng1 = ne
+    mid_lat = (lat0 + lat1) / 2.0
+    # 위도 1도당 미터 환산
+    meter_per_deg_lat = 111320
+    # 경도 1도당 미터 환산 (중간 위도 기준)
+    meter_per_deg_lng = 40075000 * math.cos(math.radians(mid_lat)) / 360
+    step_lat_m = step_deg * meter_per_deg_lat
+    step_lng_m = step_deg * meter_per_deg_lng
+    half_diagonal = math.sqrt(step_lat_m**2 + step_lng_m**2) / 2
+    return int(half_diagonal * (1 + overlap_ratio))
+
+
+class PlaceDataCollector:
+    """
+    장소 정보를 수집하는 클래스
+    구글 api를 통해 장소 정보를 수집하고 통합
+    """
+
+    def __init__(self):
+        # 환경 변수에서 API 키 및 S3 버킷 이름을 가져옴
+        self.google_api_key = os.getenv('TEST_GOOGLE_API_KEY')
+        self.s3_bucket_name = os.getenv('S3_BUCKET_NAME')
+        # AWS 자격증명 및 리전 설정2
+        aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
+        aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+        aws_region = os.getenv('AWS_REGION', 'ap-northeast-2')
+        # S3 클라이언트 생성
+        self.s3_client = boto3.client(
+            's3',
+            aws_access_key_id=aws_access_key,
+            aws_secret_access_key=aws_secret_key,
+            region_name=aws_region
+        )
+        # 전역 중복 방지를 위한 place_id 집합
+        self.seen_ids = set()
+
+
+    def get_google_place_details(self, place_id: str) -> Dict:
+        """
+        Google Place Details API를 통해 장소의 상세 정보 수집
+        Args:
+            place_id (str): 구글 플레이스 ID
+        Returns:
+            Dict: 장소의 상세 정보
+        """
+        url = "https://maps.googleapis.com/maps/api/place/details/json"
+        params = {
+            "place_id": place_id,
+            "key":      self.google_api_key,
+            "language": "ko",
+            # 필요한 필드만 지정하여 API 응답 최적화
+            "fields":   "name,formatted_address,geometry/location,opening_hours/weekday_text,types,website,editorial_summary,price_level,rating,reviews/rating,reviews/relative_time_description,reviews/text"
+        }
+        resp = requests.get(url, params=params).json()
+        return resp.get("result", {})
+
+
+    def get_almost_korean_places(
+        self,
+        start_lat: float = 33.0,
+        end_lat: float = 38.5,
+        start_lng: float = 125.0,
+        end_lng: float = 130.0,
+        step_deg: float = 0.018,
+        radius: int = 1500,
+        max_grids: int = None
+    ) -> None:
+        """
+        지정한 범위(start_lat~end_lat, start_lng~end_lng)를 격자 기반으로 검색하여 장소 정보를 수집합니다.
+        각 격자점 결과는 S3에 JSON과 전처리된 텍스트로 저장됩니다.
+        Args:
+            start_lat (float): 검색 시작 위도
+            end_lat (float): 검색 종료 위도
+            start_lng (float): 검색 시작 경도
+            end_lng (float): 검색 종료 경도
+            step_deg (float): 격자 간격(도)
+            radius (int): 검색 반경(미터)
+            max_grids (int, optional): 최대 격자점 개수, None일 경우 전체 범위
+        """
+        # 검색 범위 설정 (start/end lat, lng)
+        min_lat, max_lat = start_lat, end_lat
+        min_lng, max_lng = start_lng, end_lng
+        
+        # max_grids가 None이면 주어진 범위로부터 계산된 격자점 개수 사용
+        if max_grids is None:
+            # 세로(lat) 방향 격자 수 계산
+            lat_steps = int((end_lat - start_lat) / step_deg) + 1
+            # 가로(lng) 방향 격자 수 계산
+            lng_steps = int((end_lng - start_lng) / step_deg) + 1
+            max_grids = lat_steps * lng_steps
+        
+        print(f"max_grids: {max_grids}")
+        return
+    
+        # 격자점 카운터
+        grid_counter = 0
+
+        # 위도 방향 순회
+        lat = min_lat
+        while lat <= max_lat and grid_counter < max_grids:
+            # 경도 방향 순회
+            lng = min_lng
+            while lng <= max_lng and grid_counter < max_grids:
+                # 현재 격자점의 장소들을 저장할 리스트
+                current_grid_places = []
+                # 현재 격자점 정보 저장
+                current_grid_info = {
+                    "lat": lat,
+                    "lng": lng,
+                    "radius": radius,
+                    "step_deg": step_deg,
+                    "grid_number": grid_counter
+                }
+                
+                # 한 그리드당 단일 Nearby Search 호출: 최대 20개 place_id 처리
+                new_count = 0
+                logger.info(f"위도: {lat:.3f}, 경도: {lng:.3f} (격자점: {grid_counter + 1}/{max_grids})")
+
+                # API 요청 파라미터 설정 (한 번만 호출)
+                params = {
+                    "location": f"{lat},{lng}",
+                    "radius": radius,
+                    "key": self.google_api_key
+                }
+                resp = requests.get(
+                    "https://maps.googleapis.com/maps/api/place/nearbysearch/json", # 5000회 무료
+                    params=params
+                ).json()
+
+                # 최대 20개 결과만 사용
+                page_results = resp.get("results", [])[:20]
+                page_pids = []
+                for item in page_results:
+                    pid = item.get("place_id")
+                    if pid and pid not in self.seen_ids:
+                        self.seen_ids.add(pid)
+                        page_pids.append(pid)
+                if page_pids:
+                    details_list = self.get_multiple_place_details_parallel(page_pids)
+                    for detail in details_list:
+                        if "대한민국" in detail.get("formatted_address", ""):
+                            current_grid_places.append(detail)
+                            new_count += 1
+
+                logger.info(f"\t이 격자점에서 수집된 신규 장소 개수: {new_count}개")
+                
+                # 현재 격자점의 모든 데이터를 파일로 저장
+                if current_grid_places:
+                    self.save_grid_data_2_s3(current_grid_places, grid_counter+1, current_grid_info)
+                
+                # 다음 경도로 이동
+                lng += step_deg
+                grid_counter += 1
+            # 다음 위도로 이동
+            lat += step_deg
+
+
+    def get_multiple_place_details_parallel(self, place_ids: List[str], max_workers: int = 5) -> List[Dict]:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_pid = {
+                executor.submit(self.get_google_place_details, pid): pid
+                for pid in place_ids
+            }
+            results = []
+            for future in future_to_pid:
+                try:
+                    details = future.result()
+                    results.append(details)
+                except Exception as e:
+                    pid = future_to_pid[future]
+                    logger.error(f"Error fetching details for {pid}: {e}")
+            return results
+
+
+    def save_grid_data_2_s3(self, places: List[Dict], grid_number: int, grid_info: Dict):
+        """
+        한 격자점의 모든 데이터를 S3 버킷에 업로드합니다.
+        
+        Args:
+            places (List[Dict]): 저장할 장소 데이터 리스트
+            grid_number (int): 격자점 번호
+            grid_info (Dict): 격자점 정보 (위도, 경도, 반경 등)
+        """
+        # S3에 JSON 데이터 업로드
+        grid_data = {"grid_info": grid_info, "places": places}
+        grid_json = json.dumps(grid_data, ensure_ascii=False, indent=4)
+        # 그리드 번호 대신 (위도,경도) 조합으로 고유 인덱스 사용
+        lat_str = f"{grid_info['lat']:.3f}"
+        lng_str = f"{grid_info['lng']:.3f}"
+        raw_key = f"raw_data/raw_data_{lat_str}_{lng_str}.json"
+        self.s3_client.put_object(Bucket=self.s3_bucket_name, Key=raw_key, Body=grid_json.encode('utf-8'), ContentType='application/json')
+        logger.info(f"\tS3에 격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 데이터 업로드 완료: s3://{self.s3_bucket_name}/{raw_key}")
+
+        # 전처리된 문장 생성 및 S3 업로드
+        sentences = preprocess_raw_data_to_sentences(places)
+        sentence_lines = [f"격자점 정보: 위도 {grid_info['lat']:.3f}, 경도 {grid_info['lng']:.3f}, 반경 {grid_info['radius']}m", ""]
+        sentence_lines += sentences
+        sentence_content = "\n\n".join(sentence_lines)
+        # 전처리 파일명도 동일한 방식으로 생성
+        pre_key = f"preprocessed_raw_data/preprocessed_data_{lat_str}_{lng_str}.txt"
+        self.s3_client.put_object(Bucket=self.s3_bucket_name, Key=pre_key, Body=sentence_content.encode('utf-8'), ContentType='text/plain; charset=utf-8')
+        logger.info(f"\tS3에 전처리된 격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 데이터 업로드 완료: s3://{self.s3_bucket_name}/{pre_key}")
+
+
+def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
+    """
+    장소 데이터를 한 줄의 문장 형식으로 전처리합니다.
+    각 장소의 모든 정보가 하나의 문장으로 통합됩니다.
+    
+    Args:
+        place_data (List[Dict]): 수집된 장소 데이터 리스트
+        
+    Returns:
+        List[str]: 한 줄로 변환된 장소 정보 리스트
+    """
+    
+    sentences = []
+    
+    for place in place_data:
+        # 기본 정보 추출
+        name = place.get("name", "")
+        address = place.get("formatted_address", "")
+        rating = place.get("rating", 0)
+        price_level = place.get("price_level", 0)
+        types = place.get("types", [])
+        
+        # 운영 시간 정보 추출
+        opening_hours = place.get("opening_hours", {}).get("weekday_text", [])
+        
+        # 리뷰 정보 추출 및 통합
+        reviews = place.get("reviews", [])
+        review_texts = []
+        for review in reviews[:5]:  # 최대 5개의 리뷰만 포함
+            review_text = review.get("text", "").replace("\n", " ").strip()
+            review_rating = review.get("rating", 0)
+            if review_text:
+                review_texts.append(f"'{review_text}' (평점: {review_rating})")
+        
+        # 문장 구성
+        sentence_parts = []
+        
+        # 기본 정보 추가
+        if name and address:
+            sentence_parts.append(f"{name}은(는) {address}에 위치한")
+        
+        # 장소 유형 추가
+        if types:
+            type_str = ", ".join(types)
+            sentence_parts.append(f"{type_str}입니다")
+        
+        # 평점 정보 추가
+        if rating:
+            sentence_parts.append(f"평점은 {rating}점입니다.")
+        
+        # 가격 수준 정보 추가
+        if price_level:
+            price_str = "매우 저렴한" if price_level == 1 else "저렴한" if price_level == 2 else "보통" if price_level == 3 else "비싼" if price_level == 4 else "매우 비싼"
+            sentence_parts.append(f"가격 수준은 {price_str} 편입니다.")
+        
+        # 운영 시간 정보 추가
+        if opening_hours:
+            hours_str = ", ".join(opening_hours)
+            sentence_parts.append(f"운영 시간은 {hours_str}입니다.")
+        
+        # 리뷰 정보 추가
+        if review_texts:
+            reviews_str = ", ".join(review_texts)
+            sentence_parts.append(f"리뷰는 다음과 같습니다: {reviews_str}")
+        
+        # 모든 부분을 하나의 문장으로 통합
+        sentence = " ".join(sentence_parts) + "."
+        sentences.append(sentence)
+    
+    return sentences
+
+
+def main():
+
+    collector = PlaceDataCollector()
+    grids_per_partition = 500
+
+    try:
+        # 파티션별로 step_deg와 radius를 동적 계산하여 호출
+        partitions = make_korea_partitions()
+
+        # 각 작업자의 파티션 범위 지정
+        worker_id = 1  # 1~5 사이의 값으로 변경하여 사용
+        partitions_per_worker = 2
+        start_idx = (worker_id - 1) * partitions_per_worker
+        end_idx = min(start_idx + partitions_per_worker, len(partitions))
+
+        # 해당 작업자에게 할당된 파티션만 처리
+        for i in range(start_idx, end_idx):
+            sw, ne = partitions[i]
+            step_deg_val = compute_step_deg(sw, ne, grids_per_partition)
+            radius_val = compute_overlap_radius(sw, ne, step_deg_val)
+            print(f"sw: {sw}, ne: {ne}, step_deg_val: {step_deg_val}, radius_val: {radius_val}")
+            collector.get_almost_korean_places(
+                start_lat=sw[0], end_lat=ne[0],
+                start_lng=sw[1], end_lng=ne[1],
+                step_deg=step_deg_val, radius=radius_val
+            )
+    except Exception as e:
+        logger.error(f"데이터 수집 중 오류 발생: {e}")
+
+
+
+if __name__ == "__main__":
+    main()
