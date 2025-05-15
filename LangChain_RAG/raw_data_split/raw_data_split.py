@@ -16,6 +16,17 @@ from io import StringIO
 import os
 from dotenv import load_dotenv
 import json  # JSON 처리를 위해 추가
+import numpy as np
+import sys
+from pathlib import Path
+
+# 상위 디렉토리의 모듈 import를 위한 경로 추가
+CURRENT_DIR = Path(__file__).resolve().parent
+STORE_VECTOR_PATH = CURRENT_DIR.parent / "store_vector" / "store_vector.py"
+
+# store_vector.py에서 필요한 함수들 import
+sys.path.append(str(STORE_VECTOR_PATH.parent))
+from store_vector import create_hnsw_index, save_metadata
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
@@ -44,7 +55,34 @@ class S3:
             aws_secret_access_key=aws_secret_key,
             region_name=aws_region
         )
-    
+    # 인자로 전달한 n개만큼의 파일명을 반환하는 함수    
+    def list_first_n_files(self, folder_path: str, n: int) -> List[str]:
+        """
+        S3 버킷의 특정 폴더 내에 있는 파일 경로 중 앞에서부터 n개를 반환합니다.
+
+        Args:
+            folder_path (str): 폴더 경로 (예: 'preprocessed_raw_data/')
+            n (int): 반환할 파일 개수
+
+        Returns:
+            List[str]: 파일 경로 목록 (최대 n개)
+        """
+        if not folder_path.endswith('/'):
+            folder_path += '/'
+
+        paginator = self.s3_client.get_paginator('list_objects_v2')
+        page_iterator = paginator.paginate(Bucket=self.bucket, Prefix=folder_path)
+
+        files: List[str] = []
+        for page in page_iterator:
+            for obj in page.get('Contents', []):
+                key = obj['Key']
+                if key != folder_path:
+                    files.append(key)
+                    if len(files) >= n:
+                        return files  # n개 채우면 즉시 반환
+
+        return files  # 파일이 n개보다 적으면 가능한 만큼 반환
 
     # 폴더 내 모든 파일 목록 반환
     def list_files_in_folder(self, folder_path: str) -> List[str]:
@@ -74,7 +112,7 @@ class S3:
                 # 폴더 자체는 제외
                 if key != folder_path:
                     files.append(key)
-                    
+        # 파일명만 반환            
         return files
 
 
@@ -150,7 +188,6 @@ class S3:
         place_blocks = blocks[1:]
         return place_blocks
 
-
     # 파일 하나에 저장된 모든 장소 목록 반환 (json 파일용)
     def get_all_places_from_json(self, file_path: str) -> List[str]:
         """
@@ -199,6 +236,58 @@ class S3:
         
         return places
 
+    def save_to_s3(self, data: bytes, s3_path: str) -> None:
+        """
+        데이터를 S3에 저장하는 메소드
+        
+        Args:
+            data (bytes): 저장할 데이터
+            s3_path (str): S3에 저장할 경로
+        """
+        self.s3_client.put_object(
+            Bucket=self.bucket,
+            Key=s3_path,
+            Body=data
+        )
+        print(f"[SAVE] S3 저장 완료: {s3_path}")
+
+    def save_vector_store(self, texts: List[str], vectors: np.ndarray, base_path: str = "embedding") -> None:
+        """
+        벡터와 메타데이터를 S3에 저장하는 메소드
+        
+        Args:
+            texts (List[str]): 저장할 텍스트 목록
+            vectors (np.ndarray): 저장할 벡터
+            base_path (str): S3에 저장할 기본 경로
+        """
+        import tempfile
+        
+        # HNSW 인덱스 저장 - 임시 파일 사용
+        temp_file = tempfile.NamedTemporaryFile(suffix='.index', delete=False)
+        try:
+            # 먼저 파일을 닫아서 다른 프로세스가 접근할 수 있게 함
+            temp_file.close()
+            
+            # HNSW 인덱스 생성
+            create_hnsw_index(vectors, temp_file.name)
+            
+            # 파일 읽어서 S3에 저장
+            with open(temp_file.name, 'rb') as f:
+                hnsw_bytes = f.read()
+                hnsw_path = f"{base_path}/hnsw.index"
+                self.save_to_s3(hnsw_bytes, hnsw_path)
+        finally:
+            # 임시 파일이 존재하면 삭제 시도
+            try:
+                if os.path.exists(temp_file.name):
+                    os.unlink(temp_file.name)
+            except Exception as e:
+                print(f"Warning: 임시 파일 삭제 실패 - {e}")
+        
+        # 메타데이터 저장
+        meta_path = f"{base_path}/metadata.json"
+        meta_bytes = json.dumps(texts).encode('utf-8')
+        self.save_to_s3(meta_bytes, meta_path)
 
 def main():
     """
@@ -212,8 +301,8 @@ def main():
     # file_path = "preprocessed_raw_data/preprocessed_data_33.119_126.190.txt"
 
     # 원본 데이터 파일 경로
-    folder_path = "raw_data/"
-    file_path = "raw_data/raw_data_33.119_126.190.json"
+    folder_path = "test/raw_data/"
+    file_path = "test/raw_data/raw_data_33.119_126.190.json"
 
     files = s3.list_files_in_folder(folder_path)
     print("\n" + "="*50)
@@ -249,4 +338,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main() 
