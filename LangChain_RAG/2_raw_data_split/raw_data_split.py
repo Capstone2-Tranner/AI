@@ -15,6 +15,7 @@ from typing import List, Dict
 from io import StringIO
 import os
 from dotenv import load_dotenv
+import json  # JSON 처리를 위해 추가
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
@@ -132,8 +133,8 @@ class S3:
         return max_len
 
 
-    # 파일 하나에 저장된 모든 장소 목록 반환
-    def get_all_places(self, file_path: str) -> List[str]:
+    # 파일 하나에 저장된 모든 장소 목록 반환 (txt 파일용)
+    def get_all_places_from_txt(self, file_path: str) -> List[str]:
         """
         S3에 저장된 전처리된 데이터 파일에서 모든 장소 문장을 리스트로 반환합니다.
         
@@ -150,18 +151,70 @@ class S3:
         return place_blocks
 
 
+    # 파일 하나에 저장된 모든 장소 목록 반환 (json 파일용)
+    def get_all_places_from_json(self, file_path: str) -> List[str]:
+        """
+        S3에 저장된 JSON 형식의 원본 데이터 파일에서 모든 장소 정보를 추출합니다.
+        
+        Args:
+            file_path (str): JSON 파일 경로
+            
+        Returns:
+            List[str]: 장소 정보 리스트
+        """
+        content = self.get_file_content(file_path)
+        data = json.loads(content)
+        places = []
+        
+        if 'places' in data:
+            for place in data['places']:
+                place_info = []
+                # 장소명
+                if 'name' in place:
+                    place_info.append(f"장소명: {place['name']}")
+                # 주소
+                if 'formatted_address' in place:
+                    place_info.append(f"주소: {place['formatted_address']}")
+                # 위치 정보
+                if 'geometry' in place and 'location' in place['geometry']:
+                    location = place['geometry']['location']
+                    place_info.append(f"위치: 위도 {location['lat']}, 경도 {location['lng']}")
+                # 장소 유형
+                if 'types' in place:
+                    place_info.append(f"유형: {', '.join(place['types'])}")
+                # 평점
+                if 'rating' in place:
+                    place_info.append(f"평점: {place['rating']}")
+                # 리뷰
+                if 'reviews' in place:
+                    reviews = place['reviews']
+                    if reviews:
+                        place_info.append("리뷰:")
+                        for review in reviews[:2]:  # 처음 2개의 리뷰만 포함
+                            if 'text' in review:
+                                place_info.append(f"- {review['text'][:100]}...")  # 리뷰 텍스트 100자로 제한
+                
+                if place_info:  # 정보가 있는 경우만 추가
+                    places.append('\n'.join(place_info))
+        
+        return places
+
+
 def main():
     """
     분석 실행 함수
     """
     # S3 인스턴스 생성
     s3 = S3()
-    
-    # 분석할 파일 경로
-    file_path = "preprocessed_raw_data/preprocessed_data_33.119_126.190.txt"
-    
-    # 폴더 내 모든 파일 목록 출력
-    folder_path = "preprocessed_raw_data/"
+
+    # 전처리된 데이터 파일 경로
+    # folder_path = "preprocessed_raw_data/"
+    # file_path = "preprocessed_raw_data/preprocessed_data_33.119_126.190.txt"
+
+    # 원본 데이터 파일 경로
+    folder_path = "raw_data/"
+    file_path = "raw_data/raw_data_33.119_126.190.json"
+
     files = s3.list_files_in_folder(folder_path)
     print("\n" + "="*50)
     print("폴더 내 파일 목록")
@@ -172,10 +225,17 @@ def main():
     print("\n" + "="*50)
     print(f"파일 분석: {file_path}")
     print("="*50)
-    print(s3.get_file_content(file_path))
+    
+    # 파일 내용 출력
+    content = s3.get_file_content(file_path)
+    if file_path.endswith('.json'):
+        print(json.dumps(json.loads(content), indent=2, ensure_ascii=False))
+        places = s3.get_all_places_from_json(file_path)
+    else:
+        print(content)
+        places = s3.get_all_places_from_txt(file_path)
 
     print("\n" + "="*50)
-    places = s3.get_all_places(file_path)
     print(f"장소 목록 (총 {len(places)}개)")
     print("="*50)
     for i, place in enumerate(places, 1):
@@ -184,11 +244,9 @@ def main():
     print("="*50)
     print("분석 결과")
     print("="*50)
-    total = s3.count_places(file_path)
-    longest = s3.longest_place_word_length(file_path)
-    print(f"• 총 장소 개수: {total}")
-    print(f"• 가장 긴 장소 단어 수: {longest}")
-    
+    print(f"• 총 장소 개수: {len(places)}")
+    # print(f"• 가장 긴 장소 설명 줄 수: {max(place.count('\n') + 1 for place in places)}")
+
 
 if __name__ == "__main__":
-    main() 
+    main()

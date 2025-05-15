@@ -378,6 +378,7 @@ def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
 
 def main():
     # 그리드당 Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
+    # 그리드가 500개면 총 10000개의 장소 정보 수집, 10개의 파티션이면, 총 100000개의 장소 정보 수집
     grids_per_partition = 500
 
     try:
@@ -385,7 +386,7 @@ def main():
         partitions = make_korea_partitions()
 
         # 1부터 10까지 순차적으로 처리
-        for worker_id in range(1, 11):  # 1~10
+        for worker_id in range(1,2):  # 1~10
             print(f"\n=== Processing Worker {worker_id} ===")
             
             # 각 worker_id에 맞는 collector 인스턴스 생성
