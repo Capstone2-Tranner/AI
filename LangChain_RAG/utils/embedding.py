@@ -10,13 +10,13 @@ from typing import List, Tuple
 import numpy as np
 from dotenv import load_dotenv
 from sklearn.preprocessing import normalize
-# from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
-from sentence_transformers import SentenceTransformer #gte
+from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
+# from sentence_transformers import SentenceTransformer #gte
 
 from langchain_rag.local_storage import S3
 
 # store_vector.py에서 필요한 함수들 import
-from langchain_rag.store_vector import create_hnsw_index, save_metadata
+from Capstone2.langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
  
 # 환경 변수 로드
 load_dotenv()
@@ -34,15 +34,15 @@ class EmbedFromS3:
     def __init__(
         self,
         folder_path: str = "test/raw_data/",        # S3 폴더 경로
-        # model_name: str = "BM-K/KoSimCSE-roberta", # 임베딩 모델명
-        model_name: str = "thenlper/gte-base", 
+        model_name: str = "BM-K/KoSimCSE-roberta", # 임베딩 모델명
+        # model_name: str = "thenlper/gte-base", 
         batch_size: int = 64                   # 배치 크기
     ):
         self.folder_path = folder_path
         self.batch_size = batch_size
         self._s3 = S3()
-        #self._model = HuggingFaceEmbeddings(model_name)
-        self._model = SentenceTransformer(model_name)
+        self._model = HuggingFaceEmbeddings(model_name)
+        # self._model = SentenceTransformer(model_name)
 
     # ──────────────────────────
     # 임베딩된 내용 vector store에 저장
@@ -64,8 +64,8 @@ class EmbedFromS3:
         """
         주어진 텍스트 리스트를 임베딩한 뒤 L2 정규화하여 반환
         """
-        # embs = self._model.embed_documents(texts)
-        embs = self._model.encode(texts, show_progress_bar=False) # gte (sentence_transformers)
+        embs = self._model.embed_documents(texts)
+        # embs = self._model.encode(texts, show_progress_bar=False) # gte (sentence_transformers)
         return normalize(np.asarray(embs, dtype="float32"), norm="l2")
  
     # ──────────────────────────
