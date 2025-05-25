@@ -206,9 +206,9 @@
             "types": [
                 "supermarket",
                 "grocery_or_supermarket",
-                "food",
-                "point_of_interest",
                 "store",
+                "point_of_interest",
+                "food",
                 "establishment"
             ]
         },
@@ -231,8 +231,8 @@
             ],
             "types": [
                 "restaurant",
-                "food",
                 "point_of_interest",
+                "food",
                 "establishment"
             ]
         },

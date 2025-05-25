@@ -24,7 +24,7 @@ PROJECT_ROOT = CURRENT_DIR.parent
 sys.path.append(str(PROJECT_ROOT))
 
 # store_vector.py에서 필요한 함수들 import
-from langchain_rag.store_vector import create_hnsw_index, save_metadata
+from langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
 
 class LocalStorage:
     def __init__(self, base_dir: str = None):
