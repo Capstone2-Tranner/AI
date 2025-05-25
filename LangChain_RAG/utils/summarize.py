@@ -106,4 +106,5 @@ print("\n=== TinyLlama 출력 결과 ===\n")
 lines = output_text.splitlines()
 for line in lines:
     if any(style in line for style in ["힐링", "관광", "액티비티", "맛집", "가족", "쇼핑"]):
-        print(line.strip())
+        print(line.strip()) 
+
