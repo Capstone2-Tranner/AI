@@ -1,0 +1,705 @@
+{
+    "grid_info": {
+        "lat": 33.288916,
+        "lng": 126.162231,
+        "radius": 13542,
+        "step_deg": 0.16977599999999882,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시",
+            "geometry": {
+                "location": {
+                    "lat": 33.5042779,
+                    "lng": 126.519838
+                }
+            },
+            "name": "제주시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 고산리 2767",
+            "geometry": {
+                "location": {
+                    "lat": 33.30308660000001,
+                    "lng": 126.1776247
+                }
+            },
+            "name": "KT 고산분기국사",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 대정읍 무릉리",
+            "geometry": {
+                "location": {
+                    "lat": 33.2537871,
+                    "lng": 126.1948742
+                }
+            },
+            "name": "대우산업사",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 금능리",
+            "geometry": {
+                "location": {
+                    "lat": 33.3596367,
+                    "lng": 126.2484779
+                }
+            },
+            "name": "제주농산",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "오로라 캔들 체험이 짱~입니다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 노을해안로 대한민국 제주특별자치도, 1145",
+            "geometry": {
+                "location": {
+                    "lat": 33.3081689,
+                    "lng": 126.1641526
+                }
+            },
+            "name": "제주해양경찰서 고산출장소",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3달 전",
+                    "text": "차귀도 포구 남쪽에 있는 해양경찰서 출장소 입니다.\n인근 파도가 높아서, 출장소 바로 앞 주차장에 주차를 할 경우에는 차에 바닷물로 세차를 할 수 있습니다. 차 관리에 좋지 않으니, 파도를 피해 주차하고 주변을 둘러보세요."
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 대정읍 구억리",
+            "geometry": {
+                "location": {
+                    "lat": 33.272564,
+                    "lng": 126.278977
+                }
+            },
+            "name": "구억25시편의점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 8:00 ~ 오후 10:00",
+                    "화요일: 오전 8:00 ~ 오후 10:00",
+                    "수요일: 오전 8:00 ~ 오후 10:00",
+                    "목요일: 오전 8:00 ~ 오후 10:00",
+                    "금요일: 오전 8:00 ~ 오후 10:00",
+                    "토요일: 오전 8:00 ~ 오후 10:00",
+                    "일요일: 오전 8:00 ~ 오후 10:00"
+                ]
+            },
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "길을 물어봤는데 직원분이 자세히 설명해주었어요. 제주도 사투리 번역은 개인의 능력에 맡깁니다 ㅎㅎ 주변의 식당과 카페도 분위기 좋더군요."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "밤늦게 가로등 역활을 합니다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "store",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 월림리",
+            "geometry": {
+                "location": {
+                    "lat": 33.349888,
+                    "lng": 126.2560608
+                }
+            },
+            "name": "월림편의점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "6년 전",
+                    "text": "별하나도 아깝다\n주인이 들어갈때부터 인상쓰고 짜증스런말투\n급하게 사느라 만오천원쓴게 아깝다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "한적한곳에 편의점이 있어서 다행이다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "이 근방 유일하게 밤이나 새벽에 여는 곳.."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "부창용형님 트윗리서치 난 난 난 난 난 난 지금 너무 좋아"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "감기약이 있다"
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 대정읍 하모리 770-1",
+            "geometry": {
+                "location": {
+                    "lat": 33.21872,
+                    "lng": 126.2509544
+                }
+            },
+            "name": "바다슈퍼",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "restaurant",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 월령리",
+            "geometry": {
+                "location": {
+                    "lat": 33.3709406,
+                    "lng": 126.2253965
+                }
+            },
+            "name": "새못교",
+            "rating": 4.2,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "올레코스의 다리로.. 봄이나 가을에 산책하기 좋음"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "숲속이고 나무등 푸른 곳 입니다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 두모리",
+            "geometry": {
+                "location": {
+                    "lat": 33.3355276,
+                    "lng": 126.1973999
+                }
+            },
+            "name": "한원리사무소",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "4달 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "local_government_office",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 월령리",
+            "geometry": {
+                "location": {
+                    "lat": 33.3792172,
+                    "lng": 126.2164805
+                }
+            },
+            "name": "바다다",
+            "rating": 4.1,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "해질때 노을을 보려고 무작정 해를따라간곳. 우연히 멈춰선 이곳에서 인생사진들을 듬뿍 건질 수 있었다. 운치를 더해주는 풍력발전기와 구름, 제주바다가 어우러지는 매력적인 포구."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "제주도 서귀포시 카페 추천!\n벌써 두번째 올 정도로 분위기 좋은 카페\n바다전망대 + 라운지바 + 옥상 까지\n밤엔 디제이파티\n낮엔 카페♡\n친구들끼리와도 좋구, 연인끼리도 굿~!\n바다다 카페"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "월령포구..선인장마을 입구겸 주차장. 바닷가 냄새가 비릿비릿\n내가 사방을 둘러보아도 온통 선인장뿐인 말 그대로 선인장마을!!\n선인장 말고는 다른 식물을 본 기억이 없는것같다... ;;\n생각보다 작은마을 빠르면 30분 밥먹고 하면 1시간? 후다닥 둘러볼수있는 지나가는길에 잠깐 들리는정도로 추천!!!\n선.인.장.마.을. 정말 선인장 있는 마을이니 조용조용히 선인장보면서 걷기 좋음. 잘 찾으면 사진찍을곳도 많음.\n안에 있는 강식당촬영지는 월요일 휴무이니 참고!!\n식당은 그곳 한곳밖에 못보고, 커피숍, 어묵파는곳 있었음."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "탁트인 제주의 바다경치 ~\n선인장 마을도 함께 할 수있는 해변"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "2년전 강식당이 아니었으면 아무도 몰랐을 여기에 와서 신나게 사진찍고 놀던 기억이..."
+                }
+            ],
+            "types": [
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주시",
+            "geometry": {
+                "location": {
+                    "lat": 33.3180304,
+                    "lng": 126.2475901
+                }
+            },
+            "name": "청수리사무소",
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 안덕면 서광리",
+            "geometry": {
+                "location": {
+                    "lat": 33.2980334,
+                    "lng": 126.2903921
+                }
+            },
+            "name": "숲속둥지",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "형님... 보고싶습니다.. 형님의 영원한 VIP고객이...."
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 판포4길 41-41",
+            "geometry": {
+                "location": {
+                    "lat": 33.365692,
+                    "lng": 126.203279
+                }
+            },
+            "name": "부띠끄 풀빌라 루온토",
+            "rating": 4.2,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "맛집 갈곳 이곳에선 참 멀지만 순수 펜션만 놓고보면 이곳은 너무 좋습니다 바로앞 바다조망서부터 각호실마다 나뉘어져있는 개인 풀까지(1.5M) 크기도 넓습니다\n외딴곳을 좋아하시면 이곳을 추천드립니다\n가까운편의점(300M)"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "연인,아이가 있는분께 추천한다\n탈수기없고,현관입구좁고 신발장없어서 아쉽지만\n멋진곳이다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "4월의 제주도는 춥습니다 허나 루온토는 엄청 따스하네요 시설 풍광 다좋습니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "시설 좋고, 2층 뷰 끝내주고, 실내 수영장도 예쁘고!"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "나미브 잇 제주로 바뀌었는데 분위기,맛 둘다 좋았습니다~~"
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 신창1길 20",
+            "geometry": {
+                "location": {
+                    "lat": 33.3472463,
+                    "lng": 126.1809632
+                }
+            },
+            "name": "배배 게스트하우스",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "화요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "수요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "목요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "금요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "토요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00",
+                    "일요일: 오전 12:00~10:30, 오후 4:00 ~ 오전 12:00"
+                ]
+            },
+            "rating": 4.2,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5달 전",
+                    "text": "신창풍차해산도로와 가까우면서 저렴한 숙소\n오션뷰지만 너무 큰 기대는 하지말고\n그냥 바다가보인다 정도?\n침대는. 좋았고\n방도 따뜻했지만\n\n티비없는건 그렇다쳐도\n냉장고가 없고. 커피포트도 없었다\n충전기 위치도 침대랑 살짝 멀고\n욕실에 화장지나 수건 여유도 있었으면 하는 살짝 아쉬움이...\n\n사장님은 친절했고\n간단한 조식도 무료다 빵,토스트,계란정도\n\n주변이 너무 조용한 마을이라\n저녁엔 전혀 할게 없다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "바다가 가깝고 조용하며, 깨끗한 집과 객실\n힐링을 위한 여행을 원하신다면 노을과 바다가 잘 어우러지는 베베를 추천합니다.\n친철한 사장님 아침 잘먹었습니다.\n다음 제주도 여행에서 또 만나요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "2인실 봄방에서 하루 묵었는데 대체로 만족.\n조용한 곳에서 머물면서 올레길 트레킹을 원하면 강추.\n침구 깨끗하고 편의 시설도 잘 갖추어져 있음.\n체크인 시간 전 짐 보관 서비스도 흔쾌히 해 주셨음. 조식은 아메리칸 스타일. 맛난 슬라이스 치즈 좋았어요.(한 장이라서 아쉽긴 했지만^-^)"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "조용하고 정말 깔끔한 숙소였습니다.👍 숙소 근처 식당이랑 편의점 버스 정류장도 있어서 편하게 이용했어요."
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": "위치는 바닷가이지만 그리 좋은 편은 아님! 주방은 있지만 음식은 할수가 없고, 아침 조식은 식빵두조각에  계란 하나! 주인이 그냥 취미로 하시는 곳"
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 금악리",
+            "geometry": {
+                "location": {
+                    "lat": 33.35099940000001,
+                    "lng": 126.2869468
+                }
+            },
+            "name": "모좌교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "1년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한경면 금등리",
+            "geometry": {
+                "location": {
+                    "lat": 33.3626855,
+                    "lng": 126.1936828
+                }
+            },
+            "name": "너울빌리지",
+            "rating": 3.4,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "음.. 인테리어 분위기는 가볼만 한데.. 커피는 잘 모르겠어요... 주차도 좋고 경치도 좋은데~"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "4년 전",
+                    "text": "베이커리카페라고해서 들어갔는데\n빵 괜찮은데 되게 비싸고 커피도 비싸고 앉을곳은 마땅치않고..."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "딸기쑥케익 정말 맛있네요^^\n빵이 맛있는 카페"
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "3년 전",
+                    "text": "빵이 케잌위주고 종류가 다양하진않고 직원들이 분주해 뭘물어보기도 미안하네요 바닷가라는거 말고 큰 매력은 없습니다"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "3년 전",
+                    "text": "바다뷰 ⛱  좋네요\n단점 주변 먹거리가 없네요"
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "editorial_summary": {
+                "language": "ko",
+                "overview": "실내 수영장, 스파, 레스토랑, 테니스와 농구 코트를 제공하는 세련된 숙박 시설입니다."
+            },
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 금능남로 127",
+            "geometry": {
+                "location": {
+                    "lat": 33.378512,
+                    "lng": 126.241215
+                }
+            },
+            "name": "제주 라온호텔 앤 리조트",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 4.1,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "3주 전",
+                    "text": "9홀의 정규코스를 품고 있는 호텔 과 레스토랑, 여유로운 휴가를 계획하신다면 강추"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5달 전",
+                    "text": "먼바다가 보이긴 하지만 시설관리가 너무 안되어 있어요\n주변에 상가 식당이 없음\n난방시설이 좋지 못해요"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "10달 전",
+                    "text": "너무 오래되어서 객실억 신경안쓰는듯함\n화장실변기뚜껑 없음. 수건작은거4개만..\n세안비누가 빨래비누같은향이나고 딸랑한개  모텔급 과 동일함\n아니 못할수도..가격이 저렴한이유가 있음\n식사 안됨. 비추천."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "11달 전",
+                    "text": "좀 오래된 느낌은 나지만 가성비 좋은\n곳입니다 비양도뷰와 골프장뷰를 볼 수\n있어요~~ 1층에 슈퍼 있습니다\n주변에 암것도 없어서 식사 하려면 차를\n이용해서 나와야 합니다\n주차장은 여유있는 편입니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "그냥 최고라고 하고 싶네요.\n협재해변 근처에 넓은 방이 있는 호텔.\n밤늦은 시간 식당이 일찍 문을 닫는 제주 특성상 젊은 해변인 협재해수욕장 근처엔 간단한 술을 동반해 먹는 고깃집들이 많이 있어요.\n술을 안먹고 늦은 시간 야식을 안좋아해서 간단하게 BHC닭다리 갈릭바삭?을 먹었는데 그냥 그런 집같은 일상이라 너무 좋은 곳이예요.\n데스크 친절 감사해요.\n1월 18일 다시 가는 제주.\n또 여기 묶을 예정이에요.\n디럭스 트윈인데 가격이 착해요.\n이번 여정에 오션뷰로 예약되어 있어서 크리스마스때 가든뷰도 좋았는데 더 기대돼요."
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "http://hotel.raon.co.kr/"
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 제주시 한림읍 금능리 2041",
+            "geometry": {
+                "location": {
+                    "lat": 33.38874529999999,
+                    "lng": 126.2329346
+                }
+            },
+            "name": "엘케이호텔",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "사장님의 관리 노력이 조금더 필요합니다."
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2532177,
+                    "lng": 126.5609945
+                }
+            },
+            "name": "서귀포시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        }
+    ]
+}

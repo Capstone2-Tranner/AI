@@ -1,0 +1,415 @@
+{
+    "grid_info": {
+        "lat": 33.288916,
+        "lng": 126.501783,
+        "radius": 13542,
+        "step_deg": 0.16977599999999882,
+        "grid_number": 2
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 법환동 740-3",
+            "geometry": {
+                "location": {
+                    "lat": 33.2525144,
+                    "lng": 126.5108448
+                }
+            },
+            "name": "진흥기업",
+            "types": [
+                "electrician",
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "https://www.chinhung.co.kr/"
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 호근동 638-2",
+            "geometry": {
+                "location": {
+                    "lat": 33.2559588,
+                    "lng": 126.5360091
+                }
+            },
+            "name": "만보영농조합법인",
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "사장님도친절하시고..선과장도깨끗하고좋습니다~~^^"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 토평동 2232-2",
+            "geometry": {
+                "location": {
+                    "lat": 33.2684026,
+                    "lng": 126.5864763
+                }
+            },
+            "name": "금록상회",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2479872,
+                    "lng": 126.5132614
+                }
+            },
+            "name": "과일천하",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "천혜향선물 했더니 맛있다고 하네요^^ 감사합니다"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "store",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2500698,
+                    "lng": 126.4811254
+                }
+            },
+            "name": "올레오래농수산",
+            "rating": 4.6,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "외돌개 농수산입니다 올레오래가 아니구요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "신선한 과일"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "4달 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 호근동 512-1",
+            "geometry": {
+                "location": {
+                    "lat": 33.2494874,
+                    "lng": 126.5355926
+                }
+            },
+            "name": "영주원",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2528762,
+                    "lng": 126.5579516
+                }
+            },
+            "name": "성일컴퓨터",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 서귀동 295-23",
+            "geometry": {
+                "location": {
+                    "lat": 33.2497655,
+                    "lng": 126.5614235
+                }
+            },
+            "name": "드라마",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 10:00 ~ 오후 7:00",
+                    "화요일: 오전 10:00 ~ 오후 7:00",
+                    "수요일: 오전 10:00 ~ 오후 7:00",
+                    "목요일: 오전 10:00 ~ 오후 7:00",
+                    "금요일: 오전 10:00 ~ 오후 7:00",
+                    "토요일: 오전 10:00 ~ 오후 7:00",
+                    "일요일: 오전 10:00 ~ 오후 7:00"
+                ]
+            },
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": "여긴어디지"
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 동홍동",
+            "geometry": {
+                "location": {
+                    "lat": 33.254154,
+                    "lng": 126.5674784
+                }
+            },
+            "name": "신사정장아울렛프라자",
+            "rating": 3.2,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2481824,
+                    "lng": 126.5625901
+                }
+            },
+            "name": "서귀포농수산",
+            "types": [
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 서귀동 272-33",
+            "geometry": {
+                "location": {
+                    "lat": 33.249099,
+                    "lng": 126.5653398
+                }
+            },
+            "name": "세일스토아",
+            "types": [
+                "clothing_store",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 서귀동 406-13",
+            "geometry": {
+                "location": {
+                    "lat": 33.2476825,
+                    "lng": 126.5644233
+                }
+            },
+            "name": "노블젠",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 11:00 ~ 오후 7:00",
+                    "화요일: 오전 11:00 ~ 오후 7:00",
+                    "수요일: 오전 11:00 ~ 오후 7:00",
+                    "목요일: 오전 11:00 ~ 오후 7:00",
+                    "금요일: 오전 11:00 ~ 오후 7:00",
+                    "토요일: 오전 11:00 ~ 오후 7:00",
+                    "일요일: 오전 11:00 ~ 오후 7:00"
+                ]
+            },
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "8년 전",
+                    "text": "평균"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 서귀동 273-17",
+            "geometry": {
+                "location": {
+                    "lat": 33.2485157,
+                    "lng": 126.5655065
+                }
+            },
+            "name": "라젤로서귀포점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 10:00 ~ 오후 6:00",
+                    "화요일: 오전 10:00 ~ 오후 6:00",
+                    "수요일: 오전 10:00 ~ 오후 6:00",
+                    "목요일: 오전 10:00 ~ 오후 6:00",
+                    "금요일: 오전 10:00 ~ 오후 6:00",
+                    "토요일: 오전 10:00 ~ 오후 6:00",
+                    "일요일: 오전 10:00 ~ 오후 6:00"
+                ]
+            },
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "제주과일모두있는곳"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 제주특별자치도 서귀포시 서귀동 중정로 93",
+            "geometry": {
+                "location": {
+                    "lat": 33.24862540000001,
+                    "lng": 126.5663
+                }
+            },
+            "name": "라코스테서귀포점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 10:00 ~ 오후 9:00",
+                    "화요일: 오전 10:00 ~ 오후 9:00",
+                    "수요일: 오전 10:00 ~ 오후 9:00",
+                    "목요일: 오전 10:00 ~ 오후 9:00",
+                    "금요일: 오전 10:00 ~ 오후 9:00",
+                    "토요일: 오전 10:00 ~ 오후 9:00",
+                    "일요일: 오전 10:00 ~ 오후 9:00"
+                ]
+            },
+            "types": [
+                "clothing_store",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 서귀포시",
+            "geometry": {
+                "location": {
+                    "lat": 33.2656807,
+                    "lng": 126.5849488
+                }
+            },
+            "name": "충암청과",
+            "types": [
+                "store",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ]
+        }
+    ]
+}

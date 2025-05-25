@@ -18,12 +18,12 @@ import numpy as np
 import sys
 import shutil
 
-# 상위 디렉토리의 모듈 import를 위한 경로 추가
+# 프로젝트 루트 디렉토리를 Python 경로에 추가
 CURRENT_DIR = Path(__file__).resolve().parent
-STORE_VECTOR_PATH = CURRENT_DIR.parent / "store_vector" / "store_vector.py"
+PROJECT_ROOT = CURRENT_DIR.parent
+sys.path.append(str(PROJECT_ROOT))
 
 # store_vector.py에서 필요한 함수들 import
-sys.path.append(str(STORE_VECTOR_PATH.parent))
 from langchain_rag.store_vector import create_hnsw_index, save_metadata
 
 class LocalStorage:
@@ -38,6 +38,8 @@ class LocalStorage:
         if not self.base_dir.exists():
             self.base_dir.mkdir(parents=True, exist_ok=True)
 
+    # 목적: 특정 폴더에서 지정된 개수만큼의 파일 목록을 가져옵니다.
+    # 예시: list_first_n_files("data/", 5) -> ["data/file1.txt", "data/file2.txt", "data/file3.txt", "data/file4.txt", "data/file5.txt"]
     def list_first_n_files(self, folder_path: str, n: int) -> List[str]:
         """
         특정 폴더 내에 있는 파일 경로 중 앞에서부터 n개를 반환합니다.
@@ -61,6 +63,8 @@ class LocalStorage:
                     break
         return files
 
+    # 목적: 특정 폴더 내의 모든 파일 목록을 가져옵니다.
+    # 예시: list_files_in_folder("data/") -> ["data/file1.txt", "data/file2.txt", "data/subfolder/file3.txt"]
     def list_files_in_folder(self, folder_path: str) -> List[str]:
         """
         특정 폴더 내에 있는 모든 파일의 경로를 반환합니다.
@@ -81,6 +85,8 @@ class LocalStorage:
                 files.append(str(file_path.relative_to(self.base_dir)))
         return files
 
+    # 목적: 파일의 내용을 문자열로 읽어옵니다.
+    # 예시: get_file_content("data/example.txt") -> "파일의 내용..."
     def get_file_content(self, file_path: str) -> str:
         """
         파일 내용을 읽어옵니다.
@@ -97,6 +103,8 @@ class LocalStorage:
         
         return file_path.read_text(encoding='utf-8')
 
+    # 목적: 텍스트 파일에서 장소 정보 블록의 개수를 세어 반환합니다.
+    # 예시: count_places("data/places.txt") -> 42
     def count_places(self, file_path: str) -> int:
         """
         전처리된 데이터 파일에서 장소 문장 개수를 계산하여 반환합니다.
@@ -112,6 +120,8 @@ class LocalStorage:
         place_blocks = blocks[1:]
         return len(place_blocks)
 
+    # 목적: 텍스트 파일에서 가장 긴 장소 설명의 단어 수를 찾습니다.
+    # 예시: longest_place_word_length("data/places.txt") -> 156
     def longest_place_word_length(self, file_path: str) -> int:
         """
         전처리된 데이터 파일에서 가장 긴 장소 문장의 단어 수를 반환합니다.
@@ -132,6 +142,8 @@ class LocalStorage:
                 max_len = word_count
         return max_len
 
+    # 목적: 텍스트 파일에서 모든 장소 정보를 리스트로 추출합니다.
+    # 예시: get_all_places_from_txt("data/places.txt") -> ["장소1 정보...", "장소2 정보...", ...]
     def get_all_places_from_txt(self, file_path: str) -> List[str]:
         """
         전처리된 데이터 파일에서 모든 장소 문장을 리스트로 반환합니다.
@@ -147,6 +159,8 @@ class LocalStorage:
         place_blocks = blocks[1:]
         return place_blocks
 
+    # 목적: JSON 파일에서 장소 정보를 구조화된 형식으로 추출합니다.
+    # 예시: get_all_places_from_json("data/places.json") -> ["장소명: 카페\n주소: 서울시...", ...]
     def get_all_places_from_json(self, file_path: str) -> List[str]:
         """
         JSON 형식의 원본 데이터 파일에서 모든 장소 정보를 추출합니다.
@@ -188,6 +202,8 @@ class LocalStorage:
         
         return places
 
+    # 목적: 바이너리 데이터를 파일로 저장합니다.
+    # 예시: save_to_disk(b"Hello World", "data/example.bin")
     def save_to_disk(self, data: bytes, file_path: str) -> None:
         """
         데이터를 파일로 저장하는 메소드
@@ -201,6 +217,8 @@ class LocalStorage:
         file_path.write_bytes(data)
         print(f"[SAVE] 파일 저장 완료: {file_path}")
 
+    # 목적: 텍스트와 벡터를 파일로 저장하여 검색 인덱스를 생성합니다.
+    # 예시: save_vector_store(["텍스트1", "텍스트2"], vectors_array, "embedding/")
     def save_vector_store(self, texts: List[str], vectors: np.ndarray, base_path: str = "embedding") -> None:
         """
         벡터와 메타데이터를 파일로 저장하는 메소드
@@ -224,44 +242,107 @@ class LocalStorage:
 
 def main():
     """
-    분석 실행 함수
+    모든 함수를 테스트하는 메인 함수
     """
     # LocalStorage 인스턴스 생성
     storage = LocalStorage()
 
-    folder_path = "embedding/"
-    file_path = "embedding/metadata.json"
+    # 테스트용 디렉토리 및 파일 생성
+    test_dir = "test_data"
+    test_txt = f"{test_dir}/test_places.txt"
+    test_json = f"{test_dir}/test_places.json"
 
-    files = storage.list_files_in_folder(folder_path)
-    print("\n" + "="*50)
-    print("폴더 내 파일 목록")
-    print("="*50)
-    for file in files:
-        print(f"• {file}")
+    # 테스트용 데이터 생성
+    test_txt_content = """메타데이터
+장소1: 서울시 강남구의 카페
+주소: 서울시 강남구 테헤란로 123
+평점: 4.5
+
+장소2: 부산시 해운대구의 레스토랑
+주소: 부산시 해운대구 해운대해변로 456
+평점: 4.8"""
+
+    test_json_content = {
+        "places": [
+            {
+                "name": "테스트 카페",
+                "formatted_address": "서울시 강남구 테헤란로 123",
+                "geometry": {"location": {"lat": 37.123, "lng": 127.456}},
+                "types": ["cafe", "food"],
+                "rating": 4.5,
+                "reviews": [
+                    {"text": "좋은 카페입니다. 분위기가 좋아요."},
+                    {"text": "커피가 맛있어요."}
+                ]
+            }
+        ]
+    }
+
+    # 테스트 데이터 저장
+    storage.save_to_disk(test_txt_content.encode('utf-8'), test_txt)
+    storage.save_to_disk(json.dumps(test_json_content, ensure_ascii=False).encode('utf-8'), test_json)
 
     print("\n" + "="*50)
-    print(f"파일 분석: {file_path}")
+    print("1. 파일 목록 테스트")
     print("="*50)
-    
-    # 파일 내용 출력
-    content = storage.get_file_content(file_path)
-    if file_path.endswith('.json'):
-        print(json.dumps(json.loads(content), indent=2, ensure_ascii=False))
-        places = storage.get_all_places_from_json(file_path)
-    else:
-        print(content)
-        places = storage.get_all_places_from_txt(file_path)
+    # list_first_n_files 테스트
+    print("\n[list_first_n_files 테스트]")
+    first_n_files = storage.list_first_n_files(test_dir, 2)
+    print(f"처음 2개 파일: {first_n_files}")
+
+    # list_files_in_folder 테스트
+    print("\n[list_files_in_folder 테스트]")
+    all_files = storage.list_files_in_folder(test_dir)
+    print(f"모든 파일: {all_files}")
 
     print("\n" + "="*50)
-    print(f"장소 목록 (총 {len(places)}개)")
+    print("2. 텍스트 파일 처리 테스트")
     print("="*50)
-    for i, place in enumerate(places, 1):
-        print(f"{i:02d}. {place}\n")
-        
+    # count_places 테스트
+    print("\n[count_places 테스트]")
+    place_count = storage.count_places(test_txt)
+    print(f"장소 개수: {place_count}")
+
+    # longest_place_word_length 테스트
+    print("\n[longest_place_word_length 테스트]")
+    max_words = storage.longest_place_word_length(test_txt)
+    print(f"가장 긴 장소 설명 단어 수: {max_words}")
+
+    # get_all_places_from_txt 테스트
+    print("\n[get_all_places_from_txt 테스트]")
+    txt_places = storage.get_all_places_from_txt(test_txt)
+    print(f"텍스트 파일 장소 목록 (총 {len(txt_places)}개):")
+    for i, place in enumerate(txt_places, 1):
+        print(f"{i}. {place}")
+
+    print("\n" + "="*50)
+    print("3. JSON 파일 처리 테스트")
     print("="*50)
-    print("분석 결과")
+    # get_all_places_from_json 테스트
+    print("\n[get_all_places_from_json 테스트]")
+    json_places = storage.get_all_places_from_json(test_json)
+    print(f"JSON 파일 장소 목록 (총 {len(json_places)}개):")
+    for i, place in enumerate(json_places, 1):
+        print(f"{i}. {place}")
+
+    print("\n" + "="*50)
+    print("4. 벡터 저장소 테스트")
     print("="*50)
-    print(f"• 총 장소 개수: {len(places)}")
+    # save_vector_store 테스트
+    print("\n[save_vector_store 테스트]")
+    test_texts = ["테스트 텍스트 1", "테스트 텍스트 2"]
+    test_vectors = np.random.rand(2, 128)  # 2개의 128차원 벡터
+    storage.save_vector_store(test_texts, test_vectors, f"{test_dir}/test_vectors")
+
+    # 테스트 데이터 정리
+    print("\n" + "="*50)
+    print("테스트 완료 및 정리")
+    print("="*50)
+    try:
+        shutil.rmtree(test_dir)
+        print("테스트 데이터 정리 완료")
+    except Exception as e:
+        print(f"테스트 데이터 정리 중 오류 발생: {e}")
 
 if __name__ == "__main__":
     main() 

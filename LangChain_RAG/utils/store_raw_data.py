@@ -5,8 +5,8 @@
     방법: 
         raw data에는 구글 api를 사용해서 얻은 값들이다.
         그 값들에는 장소의 이름, 주소, 평점, 가격, 유형, 운영 시간, 리뷰 등이 있다.
-        이 값들은 json 형식으로 S3에 저장된다.
-        이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 S3에 저장된다.
+        이 값들은 json 형식으로 로컬 디스크에 저장된다.
+        이후 전처리 과정을 통해 한 줄의 문장으로 변환되어 로컬 디스크에 저장된다.
     후속 처리: 
         store_raw_data.py로 얻은 raw data는 raw_data_split.py로 적절히 분할된다.
 '''
@@ -17,11 +17,17 @@ from datetime import datetime
 from typing import Dict, List
 import os
 from dotenv import load_dotenv
-import boto3
 from concurrent.futures import ThreadPoolExecutor
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from LangChain_RAG.utils import setup_logger
+from pathlib import Path
+
+# 프로젝트 루트 디렉토리를 Python 경로에 추가
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_DIR.parent
+sys.path.append(str(PROJECT_ROOT))
+
+from langchain_rag.utils import setup_logger
+from langchain_rag.local_storage import LocalStorage
 import math
 
 # .env 파일에서 환경 변수 로드
@@ -120,23 +126,12 @@ class PlaceDataCollector:
         if not self.google_api_key:
             raise ValueError(f"GOOGLE_API_KEY_{worker_id} not found in environment variables")
             
-        # S3 버킷 이름을 가져옴
-        self.s3_bucket_name = os.getenv('S3_BUCKET_NAME')
-        # AWS 자격증명 및 리전 설정
-        aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
-        aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-        aws_region = os.getenv('AWS_REGION', 'ap-northeast-2')
-        # S3 클라이언트 생성
-        self.s3_client = boto3.client(
-            's3',
-            aws_access_key_id=aws_access_key,
-            aws_secret_access_key=aws_secret_key,
-            region_name=aws_region
-        )
         # 전역 중복 방지를 위한 place_id 집합
         self.seen_ids = set()
         # 전체 수집된 장소 수 추적
         self.total_places = 0
+        # LocalStorage 인스턴스 생성
+        self.storage = LocalStorage()
 
 
     def get_google_place_details(self, place_id: str) -> Dict:
@@ -171,7 +166,7 @@ class PlaceDataCollector:
     ) -> None:
         """
         지정한 범위(start_lat~end_lat, start_lng~end_lng)를 격자 기반으로 검색하여 장소 정보를 수집합니다.
-        각 격자점 결과는 S3에 JSON과 전처리된 텍스트로 저장됩니다.
+        각 격자점 결과는 로컬 디스크에 JSON과 전처리된 텍스트로 저장됩니다.
         Args:
             start_lat (float): 검색 시작 위도
             end_lat (float): 검색 종료 위도
@@ -252,7 +247,7 @@ class PlaceDataCollector:
                 
                 # 현재 격자점의 모든 데이터를 파일로 저장
                 if current_grid_places:
-                    self.save_grid_data_2_s3(current_grid_places, grid_counter+1, current_grid_info)
+                    self.save_grid_data(current_grid_places, grid_counter+1, current_grid_info)
                 
                 # 다음 경도로 이동
                 lng += step_deg
@@ -280,113 +275,31 @@ class PlaceDataCollector:
             return results
 
 
-    def save_grid_data_2_s3(self, places: List[Dict], grid_number: int, grid_info: Dict):
+    def save_grid_data(self, places: List[Dict], grid_number: int, grid_info: Dict):
         """
-        한 격자점의 모든 데이터를 S3 버킷에 업로드합니다.
+        한 격자점의 모든 데이터를 로컬 디스크에 저장합니다.
         
         Args:
             places (List[Dict]): 저장할 장소 데이터 리스트
             grid_number (int): 격자점 번호
             grid_info (Dict): 격자점 정보 (위도, 경도, 반경 등)
         """
-        # S3에 JSON 데이터 업로드
+        # JSON 데이터 저장
         grid_data = {"grid_info": grid_info, "places": places}
         grid_json = json.dumps(grid_data, ensure_ascii=False, indent=4)
         # 그리드 번호 대신 (위도,경도) 조합으로 고유 인덱스 사용
         lat_str = f"{grid_info['lat']:.3f}"
         lng_str = f"{grid_info['lng']:.3f}"
-        raw_key = f"raw_data/raw_data_{lat_str}_{lng_str}.json"
-        self.s3_client.put_object(Bucket=self.s3_bucket_name, Key=raw_key, Body=grid_json.encode('utf-8'), ContentType='application/json')
-        logger.info(f"\tS3에 격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 데이터 업로드 완료: s3://{self.s3_bucket_name}/{raw_key}")
-
-        # 전처리된 문장 생성 및 S3 업로드
-        sentences = preprocess_raw_data_to_sentences(places)
-        sentence_lines = [f"격자점 정보: 위도 {grid_info['lat']:.3f}, 경도 {grid_info['lng']:.3f}, 반경 {grid_info['radius']}m", ""]
-        sentence_lines += sentences
-        sentence_content = "\n\n".join(sentence_lines)
-        # 전처리 파일명도 동일한 방식으로 생성
-        pre_key = f"preprocessed_raw_data/preprocessed_data_{lat_str}_{lng_str}.txt"
-        self.s3_client.put_object(Bucket=self.s3_bucket_name, Key=pre_key, Body=sentence_content.encode('utf-8'), ContentType='text/plain; charset=utf-8')
-        logger.info(f"\tS3에 전처리된 격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 데이터 업로드 완료: s3://{self.s3_bucket_name}/{pre_key}")
-
-
-def preprocess_raw_data_to_sentences(place_data: List[Dict]) -> List[str]:
-    """
-    장소 데이터를 한 줄의 문장 형식으로 전처리합니다.
-    각 장소의 모든 정보가 하나의 문장으로 통합됩니다.
-    
-    Args:
-        place_data (List[Dict]): 수집된 장소 데이터 리스트
-        
-    Returns:
-        List[str]: 한 줄로 변환된 장소 정보 리스트
-    """
-    
-    sentences = []
-    
-    for place in place_data:
-        # 기본 정보 추출
-        name = place.get("name", "")
-        address = place.get("formatted_address", "")
-        rating = place.get("rating", 0)
-        price_level = place.get("price_level", 0)
-        types = place.get("types", [])
-        
-        # 운영 시간 정보 추출
-        opening_hours = place.get("opening_hours", {}).get("weekday_text", [])
-        
-        # 리뷰 정보 추출 및 통합
-        reviews = place.get("reviews", [])
-        review_texts = []
-        for review in reviews[:5]:  # 최대 5개의 리뷰만 포함
-            review_text = review.get("text", "").replace("\n", " ").strip()
-            review_rating = review.get("rating", 0)
-            if review_text:
-                review_texts.append(f"'{review_text}' (평점: {review_rating})")
-        
-        # 문장 구성
-        sentence_parts = []
-        
-        # 기본 정보 추가
-        if name and address:
-            sentence_parts.append(f"{name}은(는) {address}에 위치한")
-        
-        # 장소 유형 추가
-        if types:
-            type_str = ", ".join(types)
-            sentence_parts.append(f"{type_str}입니다")
-        
-        # 평점 정보 추가
-        if rating:
-            sentence_parts.append(f"평점은 {rating}점입니다.")
-        
-        # 가격 수준 정보 추가
-        if price_level:
-            price_str = "매우 저렴한" if price_level == 1 else "저렴한" if price_level == 2 else "보통" if price_level == 3 else "비싼" if price_level == 4 else "매우 비싼"
-            sentence_parts.append(f"가격 수준은 {price_str} 편입니다.")
-        
-        # 운영 시간 정보 추가
-        if opening_hours:
-            hours_str = ", ".join(opening_hours)
-            sentence_parts.append(f"운영 시간은 {hours_str}입니다.")
-        
-        # 리뷰 정보 추가
-        if review_texts:
-            reviews_str = ", ".join(review_texts)
-            sentence_parts.append(f"리뷰는 다음과 같습니다: {reviews_str}")
-        
-        # 모든 부분을 하나의 문장으로 통합
-        sentence = " ".join(sentence_parts) + "."
-        sentences.append(sentence)
-    
-    return sentences
+        raw_path = f"raw_data/raw_data_{lat_str}_{lng_str}.json"
+        self.storage.save_to_disk(grid_json.encode('utf-8'), raw_path)
+        logger.info(f"\t격자점 ({grid_info['lat']:.3f},{grid_info['lng']:.3f}) 원본 데이터 저장 완료: {raw_path}")
 
 
 def main():
     # 그리드당 Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
     # grids_per_partition = 500  # 500개의 격자점 처리 => Nearby Search 호출 500회, detail API 호출 10,000회 => Nearby Search 무료, detail API 90 달러
     # grids_per_partition = 1000  # 1000개의 격자점 처리 => Nearby Search 호출 1,000회, detail API 호출 20,000회 => Nearby Search 무료, detail API 180 달러
-    grids_per_partition = 1500  # 1500개의 격자점 처리 => Nearby Search 호출 1,500회, detail API 호출 30,000회 => Nearby Search 무료, detail API 270 달러
+    grids_per_partition = 10  # 1500개의 격자점 처리 => Nearby Search 호출 1,500회, detail API 호출 30,000회 => Nearby Search 무료, detail API 270 달러
     # grids_per_partition = 2000  # 2000개의 격자점 처리 => Nearby Search 호출 2,000회, detail API 호출 40,000회 => Nearby Search 무료, detail API 360 달러
 
     try:
@@ -416,7 +329,6 @@ def main():
             print(f"=== Completed Worker {worker_id} ===\n")
     except Exception as e:
         logger.error(f"데이터 수집 중 오류 발생: {e}")
-
 
 
 if __name__ == "__main__":

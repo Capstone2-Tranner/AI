@@ -1,0 +1,1 @@
+{"places": [{"name": "테스트 카페", "formatted_address": "서울시 강남구 테헤란로 123", "geometry": {"location": {"lat": 37.123, "lng": 127.456}}, "types": ["cafe", "food"], "rating": 4.5, "reviews": [{"text": "좋은 카페입니다. 분위기가 좋아요."}, {"text": "커피가 맛있어요."}]}]}
