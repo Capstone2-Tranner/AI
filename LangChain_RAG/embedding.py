@@ -1,11 +1,5 @@
 """
-embedding/embedding.py
-────────────────────────────────────────────
-S3 JSON·TXT → thenlper/gte-base 임베딩 & HNSW 저장 유틸
- 
-• embed_file(key)   : 단일 파일 임베딩 + HNSW 인덱스 저장
-• embed_k_files(k)  : 앞 k개 파일 임베딩 + HNSW 인덱스 저장
-• embed_all()       : 전체 폴더 임베딩 + HNSW 인덱스 저장
+3.
 """
 
 import os
@@ -19,7 +13,7 @@ from sklearn.preprocessing import normalize
 # from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
 from sentence_transformers import SentenceTransformer #gte
 
-from langchain_rag.raw_data_split import S3
+from langchain_rag.local_storage import S3
 
 # store_vector.py에서 필요한 함수들 import
 from langchain_rag.store_vector import create_hnsw_index, save_metadata
@@ -35,7 +29,7 @@ DEFAULT_HNSW_PATH = Path(
 DEFAULT_META_PATH = Path(
     os.getenv("METADATA_SAVE_PATH", "data/embedding_data/faiss_metadata.json")
 )
- 
+
 class EmbedFromS3:
     def __init__(
         self,

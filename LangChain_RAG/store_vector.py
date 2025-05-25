@@ -1,12 +1,6 @@
-# store_vector_gte.py
-# ─────────────────────────────────────────────
-# FAISS 인덱스 생성 및 임베딩 메타데이터 저장 유틸
-# • create_flat_index      : 정확도 100% Flat(Inner Product) 인덱스 생성
-# • create_ivf_index       : IVF-Flat 클러스터 인덱스 생성
-# • create_ivfpq_index     : IVF + Product Quantization 인덱스 생성
-# • create_hnsw_index      : HNSW 그래프 기반 근사 인덱스 생성
-# • save_metadata          : 임베딩 텍스트 메타데이터 JSON 저장
-# ─────────────────────────────────────────────
+"""
+4.
+"""
 
 import os
 import json
@@ -14,8 +8,12 @@ import faiss
 import numpy as np
 from pathlib import Path
 from dotenv import load_dotenv
-import sys, json
- 
+import sys
+
+# 프로젝트 루트 디렉토리를 Python 경로에 추가
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_DIR.parent
+sys.path.append(str(PROJECT_ROOT))
 
 # 환경 변수(.env) 로드: 경로 설정 등
 load_dotenv()
