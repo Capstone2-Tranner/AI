@@ -23,10 +23,10 @@ from pathlib import Path
 
 # 프로젝트 루트 디렉토리를 Python 경로에 추가
 CURRENT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = CURRENT_DIR.parent
+PROJECT_ROOT = CURRENT_DIR.parent.parent  # utils의 상위 디렉토리의 상위 디렉토리
 sys.path.append(str(PROJECT_ROOT))
 
-from langchain_rag.utils import setup_logger
+from langchain_rag.utils.utils import setup_logger  # utils.py에서 직접 import
 from langchain_rag.local_storage import LocalStorage
 import math
 
