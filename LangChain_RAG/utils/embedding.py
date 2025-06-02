@@ -13,7 +13,7 @@ from sklearn.preprocessing import normalize
 from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
 # from sentence_transformers import SentenceTransformer #gte
 
-from langchain_rag.local_storage import S3
+from Capstone2.langchain_rag.utils.local_storage import LocalStorage
 
 # store_vector.py에서 필요한 함수들 import
 from Capstone2.langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
@@ -40,7 +40,7 @@ class EmbedFromS3:
     ):
         self.folder_path = folder_path
         self.batch_size = batch_size
-        self._s3 = S3()
+        self._localstorage = LocalStorage()
         self._model = HuggingFaceEmbeddings(model_name)
         # self._model = SentenceTransformer(model_name)
 
@@ -51,7 +51,7 @@ class EmbedFromS3:
             """
             벡터와 메타데이터를 S3에 저장
             """
-            self._s3.save_vector_store(
+            self._localstorage.save_vector_store(
                 texts=texts,
                 vectors=vectors,
                 base_path="embedding"
@@ -79,9 +79,9 @@ class EmbedFromS3:
         """
         # 1) 텍스트 읽기
         texts = (
-            self._s3.get_all_places_from_json(file_path)
+            self._localstorage.get_all_places_from_json(file_path)
             if file_path.lower().endswith(".json")
-            else self._s3.get_all_places_from_txt(file_path)
+            else self._localstorage.get_all_places_from_txt(file_path)
         )
         # 2) 임베딩
         vectors = self._embed_texts(texts)
@@ -100,13 +100,13 @@ class EmbedFromS3:
         2) 순차 임베딩 + 정규화
         3) HNSW 인덱스와 메타데이터 저장
         """
-        keys = self._s3.list_first_n_files(self.folder_path, k)
+        keys = self._localstorage.list_first_n_files(self.folder_path, k)
         all_texts: List[str] = []
         print(f"[DEBUG] embed_k_files 시작: 처리할 파일 수 = {len(keys)}")
         for idx, key in enumerate(keys, start=1):
             print(f"[DEBUG] ({idx}/{len(keys)}) 파일 읽는 중: {key}")
             # 파일별 텍스트 추출
-            texts = self._s3.get_all_places_from_json(key)
+            texts = self._localstorage.get_all_places_from_json(key)
             print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
             all_texts.extend(texts)
 
@@ -130,16 +130,16 @@ class EmbedFromS3:
         2) 파일별로 배치 단위 임베딩 + 정규화
         3) HNSW 인덱스와 메타데이터 저장
         """
-        file_list = self._s3.list_files_in_folder(self.folder_path)
+        file_list = self._localstorage.list_files_in_folder(self.folder_path)
         all_texts: List[str] = []
         print(f"[DEBUG] embed_all 시작: 폴더 내 파일 수 = {len(file_list)}")
         for idx, fp in enumerate(file_list, start=1):
             print(f"[DEBUG] ({idx}/{len(file_list)}) 파일 읽는 중: {fp}")
             # 전체 파일 텍스트 추출
             if fp.lower().endswith(".json"):
-                texts = self._s3.get_all_places_from_json(fp)
+                texts = self._localstorage.get_all_places_from_json(fp)
             else:
-                texts = self._s3.get_all_places_from_txt(fp)
+                texts = self._localstorage.get_all_places_from_txt(fp)
             print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
             all_texts.extend(texts)
 

@@ -27,7 +27,7 @@ PROJECT_ROOT = CURRENT_DIR.parent.parent  # utils의 상위 디렉토리의 상�
 sys.path.append(str(PROJECT_ROOT))
 
 from langchain_rag.utils.utils import setup_logger  # utils.py에서 직접 import
-from langchain_rag.local_storage import LocalStorage
+from Capstone2.langchain_rag.utils.local_storage import LocalStorage
 import math
 
 # .env 파일에서 환경 변수 로드
