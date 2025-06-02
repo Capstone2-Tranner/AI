@@ -1,0 +1,513 @@
+{
+    "grid_info": {
+        "lat": 37.194418,
+        "lng": 127.61389233333334,
+        "radius": 110730,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 강원특별자치도 원주시",
+            "geometry": {
+                "location": {
+                    "lat": 37.3437993,
+                    "lng": 127.9333308
+                }
+            },
+            "name": "원주시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 연대리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1840929,
+                    "lng": 127.6130854
+                }
+            },
+            "name": "연대교",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 심석리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2109496,
+                    "lng": 127.5514517
+                }
+            },
+            "name": "신대교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 태평리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2041171,
+                    "lng": 127.5462301
+                }
+            },
+            "name": "KT 가남 분기국사",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 여주읍 삼교리 468-2",
+            "geometry": {
+                "location": {
+                    "lat": 37.2414756,
+                    "lng": 127.6519133
+                }
+            },
+            "name": "대성텍스",
+            "types": [
+                "home_goods_store",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 여주시",
+            "geometry": {
+                "location": {
+                    "lat": 37.2418082,
+                    "lng": 127.6162501
+                }
+            },
+            "name": "(주)라온마당",
+            "types": [
+                "real_estate_agency",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 여주읍 상거리 375-25",
+            "geometry": {
+                "location": {
+                    "lat": 37.2418082,
+                    "lng": 127.6162501
+                }
+            },
+            "name": "에이치스타일",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 여주읍 상거리 375-25",
+            "geometry": {
+                "location": {
+                    "lat": 37.2418082,
+                    "lng": 127.6162501
+                }
+            },
+            "name": "정은어패럴",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 여주읍 상거리 375-30",
+            "geometry": {
+                "location": {
+                    "lat": 37.2419748,
+                    "lng": 127.6168611
+                }
+            },
+            "name": "티아이포맨 여주대리점",
+            "rating": 3.2,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "9년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 여주시",
+            "geometry": {
+                "location": {
+                    "lat": 37.24225260000001,
+                    "lng": 127.6165834
+                }
+            },
+            "name": "지오지아 여주점",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 여주읍 점봉리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2448917,
+                    "lng": 127.6485802
+                }
+            },
+            "name": "대우일렉트로닉스",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 금당리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1960637,
+                    "lng": 127.6122795
+                }
+            },
+            "name": "금당교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "산책하기좋은곳입니다"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": "금당교"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "주변 논밭의 멋진 전망입니다. 겨울에는 별 볼일 없지만 여름에는 정말 아름답습니다. 농부들이 가꾸어온 밭 가운데 유난히 큰 나무가 있습니다. 아마도 그늘을 위해서일 것입니다. 훌륭해요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "멋진"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 금당리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1988969,
+                    "lng": 127.623445
+                }
+            },
+            "name": "금송교",
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "장소가 형편없어요. 한 번도 가본 적 없는데도요."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 삼승리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1718724,
+                    "lng": 127.6228625
+                }
+            },
+            "name": "삼승교",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": "불랙스톤cc"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "좋아요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 점동면 청안리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2030911,
+                    "lng": 127.6422487
+                }
+            },
+            "name": "개금교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 양귀리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2126723,
+                    "lng": 127.5848373
+                }
+            },
+            "name": "수풍교",
+            "rating": 2,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 점동면 원부리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1656233,
+                    "lng": 127.6314452
+                }
+            },
+            "name": "원부1교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "풍겨미좋음"
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": "그양"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "5년 전",
+                    "text": "원부브릿지"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 여주시 가남면 안금리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2235878,
+                    "lng": 127.5934472
+                }
+            },
+            "name": "안금천교",
+            "rating": 3.6,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": "그늘이  많이지고   조용하고  공관이\n넖어서  좋아요  한가지  아쉬운것은\n화장실이  없어요  그리고  쓰래기를\n수거하지  않아  종량제봉투  가저가서\n사용한것을   다시  ㅅ가저가야\n함니다   깨끗하고  좋은편임"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 이천시 장호원읍 이황리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1626785,
+                    "lng": 127.59406
+                }
+            },
+            "name": "윗담교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 대전광역시 동구",
+            "geometry": {
+                "location": {
+                    "lat": 36.3239574,
+                    "lng": 127.4750698
+                }
+            },
+            "name": "동구",
+            "types": [
+                "sublocality_level_1",
+                "sublocality",
+                "political"
+            ]
+        }
+    ]
+}

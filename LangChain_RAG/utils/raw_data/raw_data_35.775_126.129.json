@@ -1,0 +1,647 @@
+{
+    "grid_info": {
+        "lat": 35.774611,
+        "lng": 126.128783,
+        "radius": 111541,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시",
+            "geometry": {
+                "location": {
+                    "lat": 35.97961340000001,
+                    "lng": 126.7155958
+                }
+            },
+            "name": "군산시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면 신시도리",
+            "geometry": {
+                "location": {
+                    "lat": 35.81546069999999,
+                    "lng": 126.4796479
+                }
+            },
+            "name": "신시대교",
+            "rating": 3.9,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "드라이브 코스로"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면 비안도리",
+            "geometry": {
+                "location": {
+                    "lat": 35.7313049,
+                    "lng": 126.5252568
+                }
+            },
+            "name": "가력대교",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "바다를 감상하기 좋고 노을이 저물때가 가장 예쁘다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "바람쐬러 가기 좋은곳\n벤치 있는곳에서 구경하면서 간단히 캠핑 하기도 좋음"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "4년 전",
+                    "text": "고등어 나옴 ~~그런데 싸이렌소리 ㅜㅜ 소심한 나 불안했음"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "석양이 아름다워요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "내가제일하는갓"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 위도면 치도리 246-2",
+            "geometry": {
+                "location": {
+                    "lat": 35.59187319999999,
+                    "lng": 126.2871441
+                }
+            },
+            "name": "KT 위도분기국사",
+            "rating": 1,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "1년 전",
+                    "text": "지나가면서본곳"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 격포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6262888,
+                    "lng": 126.4692648
+                }
+            },
+            "name": "KT 부안지점 격포분기국사",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 격포리 274-19",
+            "geometry": {
+                "location": {
+                    "lat": 35.626761,
+                    "lng": 126.4721811
+                }
+            },
+            "name": "GS25 변산반도점",
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "point_of_interest",
+                "store",
+                "food",
+                "establishment"
+            ],
+            "website": "http://m.gsretail.com/GS25/main.aspx"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면",
+            "geometry": {
+                "location": {
+                    "lat": 35.8222385,
+                    "lng": 126.4757875
+                }
+            },
+            "name": "군산해양경찰서 새만금파출소",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "새만금 방조제에서 신시도/무녀도/선유도로 들어가는 갈림길이다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "9년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 격포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6251223,
+                    "lng": 126.4722645
+                }
+            },
+            "name": "격포교",
+            "rating": 3.9,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": "부안 격포항의 다리.격포항의 운치를 느껴봄직한 다리."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "라이딩코스로는 최고입니다~~~^^"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "자연 경치가 좋아요."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "친구들과 부안여행가서 좋았음"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "추억의다리"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 마포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.63706549999999,
+                    "lng": 126.4865684
+                }
+            },
+            "name": "종암1교",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 마포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6528416,
+                    "lng": 126.4977336
+                }
+            },
+            "name": "성천1교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "길을 잘못 들어서 남의 선산까지 길따라 올랐다가 내려오면서 한컷"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "8년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 마포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6540637,
+                    "lng": 126.5007055
+                }
+            },
+            "name": "성천2교",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": "고사포입구에서 격포 대명까지 바다조망권이 최고인 도로  중간에 있음."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "여유로운 변산반도 내 어항"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 마포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6488977,
+                    "lng": 126.5009556
+                }
+            },
+            "name": "마포교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 도청리",
+            "geometry": {
+                "location": {
+                    "lat": 35.61567919999999,
+                    "lng": 126.4843469
+                }
+            },
+            "name": "도청2교",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 채석강길 33",
+            "geometry": {
+                "location": {
+                    "lat": 35.6272007,
+                    "lng": 126.4699812
+                }
+            },
+            "name": "호텔원 변산",
+            "rating": 3.8,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5달 전",
+                    "text": "바닷가 바로 옆이라 위치가 좋은점이 장점 ! 바다를 바라보며 차한잔 할수있는 커피숍, 적당한 크기의 객실, 편의점등 마음에 드는점이 많지만 지하 주차장이 작고  차량 입출고시 접촉 사고가 쉽게 발생 할수있는 좁은 주차장의 구조 ! 부득이 차량을 숙소앞 도로가에 주차해야 하는점이 불만족 !"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1달 전",
+                    "text": "깨끗한 객실과 침구. 직원 친절. 나무랄데 없음.\n다만, 목욕 타월 없는게 아쉬움."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8달 전",
+                    "text": "호텔 어플 이용으로 평일 5만원 정도에 예약함.\n조식 서비스 없음. 15,000원에 빵과 간단한 식사를 판매함.\n편의점 있음. 10시까지 운영.\n프론트 또한 10시까지 운영.\n예약자 확인을 5분 넘게 하고, 이름을 여러번 물어보더니, 예약취소 됐다고 해서 황당했지만, 이내 고참 직원이 성과 이름 순서가 반대로 되어 있다며 해결함.\n객실 컨디션 좋음.\n격포해수욕장 바로 앞에 위치하였음.\n주차 지하에 10대 정도 주차 가능함.\n근처에 채석강 도보 방문 가능. 프론트에 물 때를 적어두어서 편리했음."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "11달 전",
+                    "text": "배니치아가 리모델링해서 호텔원으로. 지하주차장은 거의 없는셈이고 객실은 2층 3층이 전부. 외부소음은 어느정도 차단이 되는데 복도소음이 너무 잘들려서 귀마개가 필요함.\n객실크기는 무난하고 침대는 호텔치곤 조금 작은편.\n리조트갈거 아니면 이 주변에선 여기가 가장 나은듯. 해변 접근성 최고"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "금요일 숙박으로 타사이트 부킹으로 12만원 조금 덜 지불했습니다.\n바닷가 접근성이 좋은 호텔입니다.\n주차가 조금 힘들지만 호텔 직원 분들이 적극적으로 도와주시고 살펴주셔서 불편한 건 못느꼈습니다.\n2성이지만 직원분들의 서비스는 그 이상이었습니다.\n바다 접근성이 좋아서 아이들 있는 가족단위들이 많았고\n파도소리가 들려서 좋았습니다.\n단 호텔이하고 하기엔 침구의 질이 별로 였습니다.\n모텔과 비슷한 룸 구조지만 룸 안에 작은 테라스도 있고\n화장실은 깔끔하고 괜찮았어요.\n1층에 카페가 있어서 차 마시기 편했고\n편의점도 있었어요.\n그리고 태국 브랜드 탄 바디용품을 구입할 수 있어요.\n서울에도 신사동에 탄 스파샵은 하나 뿐인데\n여기서 탄 제품을 구경해 볼 수 있어서 좋았어요.\n1층에 풋샵이 있어서 발 마사지도 받을 수 있는 가 같았는데 괜찮은 호텔 편의시설인 거 같습니다.\n침구는 별로지만 룸 깔끔하고 쾌적해요~!\n다음에 아이다 조금 카면 같이 바닷가 놀러올때\n와도 좋을 만한 호텔 인거 같습니다."
+                }
+            ],
+            "types": [
+                "lodging",
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "http://www.hotelone.co.kr/"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 변산면 격포리",
+            "geometry": {
+                "location": {
+                    "lat": 35.6361948,
+                    "lng": 126.4612156
+                }
+            },
+            "name": "부안 적벽강",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "1달 전",
+                    "text": "부안 여행에서 채석강을 봤다면 이곳 적벽강도 꼭 추천 드립니다.\n전혀 다른 분위기의 바위들이 신비로운 모습으로 있는데 보면 볼수록 신기합니다. 지질의 다향한 형태가 있어서 멋진 사진을 남길수도 있고 아름다운 자연의 사진을 남길 수 있는 곳 입니다.\n사람들이 전망대만 보고 시원한 바다 바람을 맞고 가지만 바닷가로 내려와서 바위들을 보며 트레킹을 한다면 더 멋진 모습을 볼 수 있습니다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3달 전",
+                    "text": "** 2025. 2. 17 *\n\n-> 부안 적벽강\n\n전라북도 부안의 명승지~\n중국의 적벽강만큼 경치가\n뛰어나다는 데서 붙여진\n이름이다.\n\n격포해수욕장을 사이에 두고\n남쪽으로는 채석강\n북쪽으로는 수성당 지나서\n적벽강을 이루고 있다.\n\n부안군 변산면에 해당되는\n해변은 전체가 지질공원이다.\n\n전 구역이 명소이며\n기암절벽과 암반등 독특한\n바위들로 해변을 이루고 있고\n볼곳이 많은 곳이다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1달 전",
+                    "text": "가만히 귀를 기울이면 자연의 소리를 들을 수 있다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "해넘이 펜션 앞에있는 작은 해변 정말 이쁘네요. 사람 붐비지 않고 조용하게 구경하는거 좋아하시는분들은 가보세요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "채석강과는 또다른 뷰포인트로 마치 제주에 온듯한 분위기. 부안을 여행 하신다면 꼭 들려야 하는 포인트!!"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_2_0&ccbaCpno=1353500130000"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면 새만금로 1559",
+            "geometry": {
+                "location": {
+                    "lat": 35.8172343,
+                    "lng": 126.4772416
+                }
+            },
+            "name": "새만금휴게소",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": "새만금방조제 중간 정도의 신시도에 있는 작은 휴게소입니다. 전망이 탁트인 곳에 위치하고 주차 공간도 넓습니다. 휴게소는 아주 작은 규모이고 커피 테이크아웃이 가능한 편의점과 새우튀김이 맛있는 분식집 그리고 건어물 판매점 등이 있습니다."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": "탁트인 전경과 시원한바닷바람이 맞아주는곳. 드라이빙코스 괜찮고 군산에서 변산 가는 길  입구에 회센타도 있고 중간 2군데 간이휴게소도 사진 찍기 좋다 일몰은 특히 아름답다는 것. 새만금휴게소는 계약관계로 휴게소가 2군데인데 재계약 안되서 새로 지은 곳이 현 계약된 휴게소라나 머래나 ㅋㅋ 이거 알고보면 무릎탁칠듯"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "주차장은 잘되어있습니다. 휴게소는 크지않고 품목도 많이 없습니다. 사진 한 컷 찍기에는 괜찮지만 그 외에는 별다른 것이 없습니다. 화장실도 간이 화장실이라서 깨끗하지는 않으니 참고하셔서 방문 계획 세우시면 될 듯합니다."
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": "뷰가 이쁘나 휴게소가 단촐하다. 사진만 찍고 갈 장소다. 머물기에는 편의 시설이 부족함"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "넓고 광활하게 펄쳐진\n바다와함께 달리는 도로\n위에 새만금휴계소는\n내려다보면 지나온 바닷길이\n한눈에보이는 가장아름다운\n새만금휴계소"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면",
+            "geometry": {
+                "location": {
+                    "lat": 35.81411660000001,
+                    "lng": 126.4826598
+                }
+            },
+            "name": "새만금자연쉼터",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "20171024, 오후3시50분 방문\n주차장, 화장실, 무궁화공원, 조형물\n고도리(고등어 새끼) 낚시가 한창이었다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "Saemangeum seawall is the longest seawall in the world. There are a highway road on the seawall so it's easier to access to islands. However, I can imagine it harms ocean creatures and mudflat in West Sea. 새만금은 세계에서 가장 긴 방조제로 기네스북에 올랐다고 한다. 방조제 위의 도로를 따라 드라이브를 하다보면 뻥 뚫린 기분을 느낄 수 있지만, 동시에 이로 인해 얼마나 많은 자연 생물들이 피해를 입었을 까 반문하게 된다."
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "이 곳은 뷰도 좋고 쾌적한 곳인데\n차박 차량이 알박기를 해서\n정말 짜증났어요\n버스 큰걸 횡으로 세워\n개인땅처럼 사용하네요.\n우리 이러지 맙시다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "인간이 만든 구조물 중에 거대한 성과로 볼수 있으면 드라이브하기에 좋습니다 한번쯤 가볼만합니다 바다를 가로질러가는 기분입니다  중간쯤 섬으로 갈수 있어서 해수욕도 가능합니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "자전거 라이딩 시 좋은 휴식처네요. 관리 잘 되어있습니다!!"
+                }
+            ],
+            "types": [
+                "park",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면",
+            "geometry": {
+                "location": {
+                    "lat": 35.7962132,
+                    "lng": 126.4916195
+                }
+            },
+            "name": "새만금바람쉼터",
+            "rating": 3.9,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": "새만금을 관광하다보면 나타나는 다수의 휴게소중 하나입니다...화장실과 넓은 주차장 그리고 약간의 그늘쉼터와 음료자판기...땡...그리고 암것도 없습니다...다른 쉼터에는 매점이라도 있던데..."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "넓고 한적하고\n화장실 깨끗 아이들 놀이터도 있어요\n잠시 쉬어가기 좋아요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "매우좋아요 풍광이 매우 넓어서 호주에 온것만같은 느낌도 들고 화장실도 매우깨끗합니다 화장실 그 이상의 의미가 있는곳 같아요 한번 들려서 여유로움을 만끽하고 가세요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "텐트 치기도 좋고 자전거 타기도 좋아요."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "저녁노을 사진 찍기 넘  좋아요\n새만금 방조제 어디에서나\n좋아요 사진찍기\n그저 샤타만 누르면\n멋진사진 찍히는것 같아요\n주차걱정 없어요\n방조제 도로 왼쪽 아무데나\n주차해도 되던데요\nㅋ\n많은분들도 모두 그렇게 주차해\n놓으시고 서해바다 아름다음 즐기면\n사진촬영 하더린구요"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 군산시 옥도면",
+            "geometry": {
+                "location": {
+                    "lat": 35.7808818,
+                    "lng": 126.4986192
+                }
+            },
+            "name": "새만금소라쉼터",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "자전거 타기 좋아요.\n일몰시간 맞춰가면 길건너에서 멋진 일몰도 보실수 있습니다."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "부안에서 군산방면으로 가는 길에 있으며 넓은 새만금을 보며 쉼을 가질 수 있는 곳이다. 주차장도 넓어 여유롭게 주차할 수 있다."
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "8년 전",
+                    "text": "탁트인 풍경 매우 좋아요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "바람 부는날 차박하기 좋은 곳 입니다.\n아늑하니 바람을 막아 주네요"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": "새만금 방조제 군산 방향 쪽.  주차하고 바다를 바라보며 조용히 생각하기 좋음."
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군",
+            "geometry": {
+                "location": {
+                    "lat": 35.7264188,
+                    "lng": 126.7371611
+                }
+            },
+            "name": "부안군",
+            "types": [
+                "locality",
+                "political"
+            ]
+        }
+    ]
+}

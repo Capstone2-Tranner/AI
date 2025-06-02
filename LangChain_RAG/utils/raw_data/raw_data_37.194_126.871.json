@@ -1,0 +1,636 @@
+{
+    "grid_info": {
+        "lat": 37.194418,
+        "lng": 126.87133766666666,
+        "radius": 110730,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 경기도 화성시",
+            "geometry": {
+                "location": {
+                    "lat": 37.1688927,
+                    "lng": 126.8941169
+                }
+            },
+            "name": "화성시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 창곡리 264-1",
+            "geometry": {
+                "location": {
+                    "lat": 37.191079,
+                    "lng": 126.8836003
+                }
+            },
+            "name": "동우포장",
+            "rating": 1,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "6년 전",
+                    "text": "잘모름"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 창곡리 1034-1",
+            "geometry": {
+                "location": {
+                    "lat": 37.1723869,
+                    "lng": 126.8911001
+                }
+            },
+            "name": "(주)신안오토테크",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 구장리 38-29",
+            "geometry": {
+                "location": {
+                    "lat": 37.1686375,
+                    "lng": 126.8955165
+                }
+            },
+            "name": "(주)대은이엔지",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 구장리 106-1",
+            "geometry": {
+                "location": {
+                    "lat": 37.1668044,
+                    "lng": 126.8980718
+                }
+            },
+            "name": "주성산업",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 9:00 ~ 오후 5:00",
+                    "화요일: 오전 9:00 ~ 오후 5:00",
+                    "수요일: 오전 9:00 ~ 오후 5:00",
+                    "목요일: 오전 9:00 ~ 오후 5:00",
+                    "금요일: 오전 9:00 ~ 오후 5:00",
+                    "토요일: 오전 12:00 ~ 오후 5:00",
+                    "일요일: 휴무일"
+                ]
+            },
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "35주년을 맞이한품질경영 시스템인증기업"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 남양동",
+            "geometry": {
+                "location": {
+                    "lat": 37.1942999,
+                    "lng": 126.8342439
+                }
+            },
+            "name": "대광프라자",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 휴무일",
+                    "화요일: 휴무일",
+                    "수요일: 휴무일",
+                    "목요일: 휴무일",
+                    "금요일: 휴무일",
+                    "토요일: 오전 8:40 ~ 오후 9:00",
+                    "일요일: 오전 8:40 ~ 오후 9:00"
+                ]
+            },
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": "근처에 주차할만한 곳 많아 좋음"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "삼촌네 집밥 김밥 깔끔하고 맛있어요"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": "화장실이 불편함"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "5년 전",
+                    "text": "다 망가져간 건물."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "친구집"
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 북양동 78",
+            "geometry": {
+                "location": {
+                    "lat": 37.221666,
+                    "lng": 126.8386165
+                }
+            },
+            "name": "크로커다일 경기남양점",
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "친절했어요"
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 자안리 781-3",
+            "geometry": {
+                "location": {
+                    "lat": 37.1977169,
+                    "lng": 126.8752121
+                }
+            },
+            "name": "CU 화성자안점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 3.7,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "그냥 동네편의점 가끔남양읍으로 노동일하러가다 간식이나 담배사러들림 사장 친절하고 점포 내 외부깔끔  현금인출기 안에설치되어있음"
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "4년 전",
+                    "text": "그냥 동네편의점 여기점주가 자전거라이딩좋아해서개인적으로교류중임"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "아르바이트생이 착하고 매장이 깨끗해요."
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "그냥 평범한 편의점."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "좋아"
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 하저리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1906066,
+                    "lng": 126.8723237
+                }
+            },
+            "name": "하저1교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 자안리",
+            "geometry": {
+                "location": {
+                    "lat": 37.199911,
+                    "lng": 126.8709902
+                }
+            },
+            "name": "자안교",
+            "rating": 3.8,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": "다리가 있었어요?"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": "작고 별로 바쁘지 않습니다. 근처에 소규모 회사가 있습니다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 하저리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1867182,
+                    "lng": 126.8728515
+                }
+            },
+            "name": "하저2교",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면",
+            "geometry": {
+                "location": {
+                    "lat": 37.1963005,
+                    "lng": 126.8811004
+                }
+            },
+            "name": "자안교",
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "좋아요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 하저리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1835241,
+                    "lng": 126.8731571
+                }
+            },
+            "name": "하저3교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 하저리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1791358,
+                    "lng": 126.8733239
+                }
+            },
+            "name": "하저4교",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "7년 전",
+                    "text": "내가 공사한곳\n2년에걸쳐만든 비봉~매송간 민자도로\n수원 과천10분내 주파할수있다\n총공사기간6년에걸쳐2017년7월1일개통"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 양노리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2132149,
+                    "lng": 126.8706843
+                }
+            },
+            "name": "양노4교",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "와 다리다"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 팔탄면 율암리",
+            "geometry": {
+                "location": {
+                    "lat": 37.1734976,
+                    "lng": 126.8735185
+                }
+            },
+            "name": "율암교",
+            "rating": 4.2,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": "보통"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 양노리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2176589,
+                    "lng": 126.8721007
+                }
+            },
+            "name": "양노3교",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 양노리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2235471,
+                    "lng": 126.874017
+                }
+            },
+            "name": "양노2교",
+            "rating": 3.1,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 비봉면 양노리",
+            "geometry": {
+                "location": {
+                    "lat": 37.2281299,
+                    "lng": 126.8759056
+                }
+            },
+            "name": "양노1교",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 경기도 화성시 봉담읍",
+            "geometry": {
+                "location": {
+                    "lat": 37.2038973,
+                    "lng": 126.9392221
+                }
+            },
+            "name": "봉담읍",
+            "types": [
+                "sublocality_level_2",
+                "sublocality",
+                "political"
+            ]
+        }
+    ]
+}
