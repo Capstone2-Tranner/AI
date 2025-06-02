@@ -3,6 +3,7 @@
 """
 
 import os
+import json
 import sys
 from pathlib import Path
 from typing import List, Tuple
@@ -13,14 +14,19 @@ from sklearn.preprocessing import normalize
 from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
 # from sentence_transformers import SentenceTransformer #gte
 
-from langchain_rag.local_storage import S3
+from langchain_rag.utils.local_storage import S3
+
+# 프로젝트 루트 디렉토리를 Python 경로에 추가
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_DIR.parent.parent  # utils의 상위 디렉토리의 상위 디렉토리
+sys.path.append(str(PROJECT_ROOT))
 
 # store_vector.py에서 필요한 함수들 import
-from Capstone2.langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
+from langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
  
 # 환경 변수 로드
 load_dotenv()
- 
+
 # 기본 HNSW 인덱스 저장 경로 (환경변수로 재정의 가능)
 DEFAULT_HNSW_PATH = Path(
     os.getenv("HNSW_INDEX_PATH", "data/embedding_data/hnsw.index")
@@ -176,4 +182,3 @@ if __name__ == "__main__":
         texts, vecs = emb.embed_all()
  
     print(f" 임베딩 및 저장 완료 • 총 {len(texts)}개 • shape={vecs.shape}")
- 

@@ -1,9 +1,15 @@
+import sys
 from fastapi import FastAPI, Body
 from pathlib import Path
 
-from Capstone2.langchain_rag.pre_processing import pre_processing
-from Capstone2.langchain_rag.retrieval import VectorStoreRetriever
-from Capstone2.langchain_rag.make_prompt import make_prompt
+# 프로젝트 루트 디렉토리를 Python 경로에 추가
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_DIR.parent  # app의 상위 디렉토리
+sys.path.append(str(PROJECT_ROOT))
+
+from langchain_rag.pre_processing import pre_processing
+from langchain_rag.retrieval import VectorStoreRetriever
+from langchain_rag.make_prompt import make_prompt
 from langchain.chat_models import ChatAnthropic
 from langchain.schema import HumanMessage
 

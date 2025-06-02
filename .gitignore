@@ -57,6 +57,7 @@ redoc_static/
 # (1) 학습/임베딩 결과물
 langchain_rag/data_local/
 langchain_rag/embedding/**/LOG/
+langchain_rag/utils/raw_data/
 # (2) 캐시·임시
 langchain_rag/**/__pycache__/
 # (3) 주의: 다음 폴더는 *KEEP*
