@@ -24,7 +24,7 @@ PROJECT_ROOT = CURRENT_DIR.parent
 sys.path.append(str(PROJECT_ROOT))
 
 # store_vector.py에서 필요한 함수들 import
-from langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
+from store_vector import create_hnsw_index, save_metadata
 
 class LocalStorage:
     def __init__(self, base_dir: str = None):
@@ -201,6 +201,58 @@ class LocalStorage:
                     places.append('\n'.join(place_info))
         
         return places
+
+    def get_all_places_from_predata(self, file_path: str) -> List[str]:
+        """
+        전처리된 텍스트 형식의 데이터 파일에서 모든 장소 정보를 추출합니다.
+
+        Args:
+            file_path (str): 텍스트 파일 경로
+
+        Returns:
+            List[str]: 장소 정보 리스트
+        """
+        content = self.get_file_content(file_path)
+        places = []
+
+        # 빈 줄(또는 여러 개의 공백 문자)로 구분된 엔트리 단위로 분리
+        entries = [block.strip() for block in content.split("\n\n") if block.strip()]
+
+        for entry in entries:
+            place_info = []
+            # 한 엔트리 안의 각 라인을 “키 : 값” 형태로 분리
+            for line in entry.splitlines():
+                # 콜론 기준으로 앞뒤로 나누되, 키와 값 모두 strip() 처리
+                if ":" not in line:
+                    continue
+                key, value = map(str.strip, line.split(":", 1))
+
+                if key == "주소":
+                    place_info.append(f"주소: {value}")
+                elif key == "위도, 경도":
+                    # "위도, 경도   : 33.349888, 126.2560608" -> 위도, 경도 분할
+                    lat_lng = [coord.strip() for coord in value.split(",")]
+                    if len(lat_lng) == 2:
+                        place_info.append(f"위치: 위도 {lat_lng[0]}, 경도 {lat_lng[1]}")
+                elif key == "이름":
+                    place_info.append(f"장소명: {value}")
+                elif key == "전체 평점":
+                    place_info.append(f"평점: {value}")
+                elif key == "타입":
+                    # "supermarket, grocery_or_supermarket, ..." 형태
+                    types = [t.strip() for t in value.split(",")]
+                    place_info.append(f"유형: {', '.join(types)}")
+                elif key == "한 줄 요약 리뷰":
+                    # 리뷰가 "리뷰 없음"인 경우에도 그대로 추가하거나,
+                    # 필요에 따라 예외 처리를 해줄 수 있음
+                    summary = value if value != "리뷰 없음" else "리뷰 없음"
+                    place_info.append(f"리뷰 요약: {summary}")
+
+            if place_info:
+                places.append("\n".join(place_info))
+
+        return places
+
 
     # 목적: 바이너리 데이터를 파일로 저장합니다.
     # 예시: save_to_disk(b"Hello World", "data/example.bin")
