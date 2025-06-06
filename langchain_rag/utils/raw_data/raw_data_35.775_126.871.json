@@ -1,0 +1,536 @@
+{
+    "grid_info": {
+        "lat": 35.774611,
+        "lng": 126.87133766666666,
+        "radius": 111541,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 전북특별자치도 정읍시",
+            "geometry": {
+                "location": {
+                    "lat": 35.5615819,
+                    "lng": 126.8636603
+                }
+            },
+            "name": "정읍시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 부안군 동진면 동전리",
+            "geometry": {
+                "location": {
+                    "lat": 35.7574726,
+                    "lng": 126.7768987
+                }
+            },
+            "name": "동진대교",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "다리다리"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "사람"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 교동",
+            "geometry": {
+                "location": {
+                    "lat": 35.8003026,
+                    "lng": 126.8806377
+                }
+            },
+            "name": "전북타임스",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "정보가부족"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 182-72",
+            "geometry": {
+                "location": {
+                    "lat": 35.79988619999999,
+                    "lng": 126.8898035
+                }
+            },
+            "name": "원협70번상회",
+            "types": [
+                "point_of_interest",
+                "store",
+                "food",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 183-1",
+            "geometry": {
+                "location": {
+                    "lat": 35.800525,
+                    "lng": 126.890109
+                }
+            },
+            "name": "KT 김제지점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 9:00 ~ 오후 5:00",
+                    "화요일: 오전 9:00 ~ 오후 5:00",
+                    "수요일: 오전 9:00 ~ 오후 5:00",
+                    "목요일: 오전 9:00 ~ 오후 5:00",
+                    "금요일: 휴무일",
+                    "토요일: 휴무일",
+                    "일요일: 오전 9:00 ~ 오후 5:00"
+                ]
+            },
+            "rating": 3.4,
+            "reviews": [
+                {
+                    "rating": 2,
+                    "relative_time_description": "3년 전",
+                    "text": "주차공간이 완전 안좋아요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "매장 직원 너무 친절했습니다."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "친절하네요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "친절"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 194-7",
+            "geometry": {
+                "location": {
+                    "lat": 35.8001361,
+                    "lng": 126.8864427
+                }
+            },
+            "name": "죠다쉬김제점",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "8년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 서암동 394-55",
+            "geometry": {
+                "location": {
+                    "lat": 35.8057187,
+                    "lng": 126.8829151
+                }
+            },
+            "name": "축협육우고기전문판매장",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 정읍시 신태인읍 우령리 25-1",
+            "geometry": {
+                "location": {
+                    "lat": 35.69992570000001,
+                    "lng": 126.8795293
+                }
+            },
+            "name": "경일중공업",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 정읍시 신태인읍 양괴리 794-16",
+            "geometry": {
+                "location": {
+                    "lat": 35.7067578,
+                    "lng": 126.8548926
+                }
+            },
+            "name": "두지보건소",
+            "types": [
+                "hospital",
+                "health",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 212-5",
+            "geometry": {
+                "location": {
+                    "lat": 35.80002500000001,
+                    "lng": 126.8879426
+                }
+            },
+            "name": "포유편의점",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "editorial_summary": {
+                "language": "en",
+                "overview": "Pit stop for snacks, drinks & daily essentials"
+            },
+            "formatted_address": "대한민국 전북특별자치도 김제시 서암동 498-3",
+            "geometry": {
+                "location": {
+                    "lat": 35.8036354,
+                    "lng": 126.8721662
+                }
+            },
+            "name": "세븐일레븐 김제서암점",
+            "types": [
+                "convenience_store",
+                "store",
+                "food",
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "http://www.7-eleven.co.kr/"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 서암동",
+            "geometry": {
+                "location": {
+                    "lat": 35.8036354,
+                    "lng": 126.8729439
+                }
+            },
+            "name": "HM25",
+            "rating": 3.5,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "9년 전",
+                    "text": "디앤에스 방문은 김제를 경유합니다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동",
+            "geometry": {
+                "location": {
+                    "lat": 35.8025802,
+                    "lng": 126.8846651
+                }
+            },
+            "name": "채널큐",
+            "rating": 4.7,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "point_of_interest",
+                "store",
+                "food",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 신풍동",
+            "geometry": {
+                "location": {
+                    "lat": 35.7933871,
+                    "lng": 126.9014137
+                }
+            },
+            "name": "새마을편의점",
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 51-14",
+            "geometry": {
+                "location": {
+                    "lat": 35.8031358,
+                    "lng": 126.8941086
+                }
+            },
+            "name": "바이더웨이",
+            "rating": 2,
+            "reviews": [
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 51-14",
+            "geometry": {
+                "location": {
+                    "lat": 35.8031636,
+                    "lng": 126.8941086
+                }
+            },
+            "name": "프렌즈",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 요촌동 550-7",
+            "geometry": {
+                "location": {
+                    "lat": 35.80560779999999,
+                    "lng": 126.8944696
+                }
+            },
+            "name": "GS25 김제요촌점",
+            "rating": 4.2,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "8년 전",
+                    "text": "아줌마가 목소리가 큼"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "supermarket",
+                "grocery_or_supermarket",
+                "food",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ],
+            "website": "http://gs25.gsretail.com/"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 신풍동",
+            "geometry": {
+                "location": {
+                    "lat": 35.7999142,
+                    "lng": 126.9056353
+                }
+            },
+            "name": "검산주공2단지아파트",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 6:00 ~ 오후 5:00",
+                    "화요일: 오전 6:00 ~ 오후 5:00",
+                    "수요일: 오전 6:00 ~ 오후 5:00",
+                    "목요일: 오전 6:00 ~ 오후 5:00",
+                    "금요일: 오전 6:00 ~ 오후 5:00",
+                    "토요일: 오전 6:00 ~ 오후 5:30",
+                    "일요일: 오전 6:30 ~ 오후 2:00"
+                ]
+            },
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "9년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시 검산동 1050",
+            "geometry": {
+                "location": {
+                    "lat": 35.8007752,
+                    "lng": 126.9049687
+                }
+            },
+            "name": "GS25 김제주공점",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "types": [
+                "convenience_store",
+                "point_of_interest",
+                "store",
+                "food",
+                "establishment"
+            ],
+            "website": "http://gs25.gsretail.com/"
+        },
+        {
+            "formatted_address": "대한민국 전북특별자치도 김제시",
+            "geometry": {
+                "location": {
+                    "lat": 35.8024889,
+                    "lng": 126.892438
+                }
+            },
+            "name": "김제시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        }
+    ]
+}

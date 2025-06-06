@@ -1,0 +1,464 @@
+{
+    "grid_info": {
+        "lat": 34.354804,
+        "lng": 126.128783,
+        "radius": 112335,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 전라남도 해남군",
+            "geometry": {
+                "location": {
+                    "lat": 34.5743438,
+                    "lng": 126.5908497
+                }
+            },
+            "name": "해남군",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 조도면 맹성리",
+            "geometry": {
+                "location": {
+                    "lat": 34.3207705,
+                    "lng": 126.0385592
+                }
+            },
+            "name": "조도대교",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "11달 전",
+                    "text": "진도군 조도면에 있는 조도대교!\n공사를 하러 들어왔네요.\n아치형이라 반대쪽에서 안보이는 구조네요^^\n날씨가 맑을때는 경치가 너무 좋네요.\n잘 마무리하고 가겠습니다.\n\n정의\n전라남도 진도군 조도면에 있는 상조도와 하조도를 잇는 다리.\n\n개설\n조도대교는 상조도와 하조도를 연결하는 교량으로 상조도의 정지모리와 하조도의 나리구지를 연결한다.\n연장 510m로 1997년에 건설되어 조도면의 중심지인 하조도를 상조도 주민들이 이용하기에 편리해졌다.\n\n제원\n길이 510m로 경간 장길이 L=120m 짜리 3개, L=75m 짜리 2개를 Steel Box 공법으로 축조하였다.\n\n건립경위\n조도대교는 1990년 8월 착공하여 1997년 4월 30일에 준공하였다.\n\n위치와 교통\n전라남도 진도군 조도면 창유리에서 맹성리를 잇는 군도 1호선 연장에 있다.\n\n현황\n조도대교를 건너는 공영버스가 운행되어 상조도와 하조도 두 섬 간을 운행하고 있다.\n조도대교는 그 기능성에서뿐만 아니라 예술성에서도 우수하다는 평가를 받는다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "전라남도 진도군 조도면에 있는 상조도와 하조도를 연결하는 다리이다.\n\n길이 510m이고 2차선 도로이다\n스틸 박스(steel box) 공법으로 1990년 8월 착공하여 1997년 4월 30일 준공하였다.\n\n상조도의 정지모리와 하조도의 나리구지를 잇는다. 다리가 건설되면서 상조도 주민들이 조도면의 중심지인 하조도를 한결 편하게 이용할 수 있게 되었다.\n\n공영버스가 상조도와 하조도 두 섬 간을 운행하고 있다. 조도대교는 그 기능성은 물론 예술성 면에서도 뛰어나다."
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "상조도와 하조도를 이어주는  연육교이고 다리위에서 바라보는 다도해와어우러진  일몰이 장관이다"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "2년 전",
+                    "text": "여행"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "조도대교 장어낚시 하러 왔는데 대물장어3마리\n잡았습니다"
+                }
+            ],
+            "types": [
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 해남군 문내면",
+            "geometry": {
+                "location": {
+                    "lat": 34.5716339,
+                    "lng": 126.3046394
+                }
+            },
+            "name": "제2진도대교",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 4.6,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "렌드마크처럼 멋지네요."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 조도면 창유리 78-2",
+            "geometry": {
+                "location": {
+                    "lat": 34.3042171,
+                    "lng": 126.0511695
+                }
+            },
+            "name": "진도교육지원청",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 진도읍 남동리 776-13",
+            "geometry": {
+                "location": {
+                    "lat": 34.4806996,
+                    "lng": 126.2634787
+                }
+            },
+            "name": "365마트",
+            "rating": 3.3,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "8년 전",
+                    "text": "늦게기지 영업하는 조그만 동네 상점"
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "7년 전",
+                    "text": "친절햬요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": "기억이 ..."
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 군내면 분토리",
+            "geometry": {
+                "location": {
+                    "lat": 34.51208519999999,
+                    "lng": 126.2921142
+                }
+            },
+            "name": "하나로마트",
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 군내면 둔전리",
+            "geometry": {
+                "location": {
+                    "lat": 34.5207231,
+                    "lng": 126.2904197
+                }
+            },
+            "name": "진도터널",
+            "rating": 2.5,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "진도대교를 가려면 지나가게되는 진도터널이네요@@/\n지방도로 터널이라 관리가 소홀할거 같았는데 깨끗하네요^^"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 진도읍 교동리 466-1",
+            "geometry": {
+                "location": {
+                    "lat": 34.4848935,
+                    "lng": 126.2618955
+                }
+            },
+            "name": "KT 진도지점",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 진도읍 교동리",
+            "geometry": {
+                "location": {
+                    "lat": 34.48456019999999,
+                    "lng": 126.2623954
+                }
+            },
+            "name": "진도가전마트",
+            "rating": 3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "친절하시고 좋아요 주차장이 아쉽네요"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "home_goods_store",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 고군면 고성리",
+            "geometry": {
+                "location": {
+                    "lat": 34.5005036,
+                    "lng": 126.3144735
+                }
+            },
+            "name": "종합가전마트",
+            "rating": 1,
+            "reviews": [
+                {
+                    "rating": 1,
+                    "relative_time_description": "8년 전",
+                    "text": "실음"
+                },
+                {
+                    "rating": 1,
+                    "relative_time_description": "7년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 신안군",
+            "geometry": {
+                "location": {
+                    "lat": 34.65298129999999,
+                    "lng": 126.0496893
+                }
+            },
+            "name": "장병예수장로교회",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 신안군 신의면 상태동리 290",
+            "geometry": {
+                "location": {
+                    "lat": 34.58704540000001,
+                    "lng": 126.09427
+                }
+            },
+            "name": "KT 신의분기국사",
+            "rating": 2,
+            "reviews": [
+                {
+                    "rating": 2,
+                    "relative_time_description": "1년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 신안군 하의면 웅곡리",
+            "geometry": {
+                "location": {
+                    "lat": 34.5939605,
+                    "lng": 126.0476354
+                }
+            },
+            "name": "KT 하의분기국사",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 조도면 창유리 1031",
+            "geometry": {
+                "location": {
+                    "lat": 34.3129104,
+                    "lng": 126.0426423
+                }
+            },
+            "name": "조도중학교",
+            "types": [
+                "school",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 진도군",
+            "geometry": {
+                "location": {
+                    "lat": 34.4825327,
+                    "lng": 126.2647564
+                }
+            },
+            "name": "중앙청과",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 해남군",
+            "geometry": {
+                "location": {
+                    "lat": 34.5820504,
+                    "lng": 126.3691608
+                }
+            },
+            "name": "대명유통",
+            "types": [
+                "store",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 군내면 녹진리 35",
+            "geometry": {
+                "location": {
+                    "lat": 34.5614405,
+                    "lng": 126.2913353
+                }
+            },
+            "name": "녹진보건소",
+            "types": [
+                "hospital",
+                "point_of_interest",
+                "health",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 진도군 조도면 관매도리 458",
+            "geometry": {
+                "location": {
+                    "lat": 34.2401691,
+                    "lng": 126.053393
+                }
+            },
+            "name": "관매초등학교",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 진도군",
+            "geometry": {
+                "location": {
+                    "lat": 34.47297799999999,
+                    "lng": 126.2472582
+                }
+            },
+            "name": "진도119안전센터",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군",
+            "geometry": {
+                "location": {
+                    "lat": 34.319678,
+                    "lng": 126.746282
+                }
+            },
+            "name": "완도군",
+            "types": [
+                "locality",
+                "political"
+            ]
+        }
+    ]
+}

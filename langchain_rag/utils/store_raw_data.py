@@ -27,7 +27,7 @@ PROJECT_ROOT = CURRENT_DIR.parent.parent  # utils의 상위 디렉토리의 상�
 sys.path.append(str(PROJECT_ROOT))
 
 from langchain_rag.utils.utils import setup_logger  # utils.py에서 직접 import
-from Capstone2.langchain_rag.utils.local_storage import LocalStorage
+from langchain_rag.utils.local_storage import LocalStorage
 import math
 
 # .env 파일에서 환경 변수 로드
@@ -297,9 +297,10 @@ class PlaceDataCollector:
 
 def main():
     # 그리드당 Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
+    grids_per_partition = 1  # 1개의 격자점 처리 => Nearby Search 호출 1회, detail API 호출 20회 => 총 20개의 장소 정보 수집
     # grids_per_partition = 500  # 500개의 격자점 처리 => Nearby Search 호출 500회, detail API 호출 10,000회 => Nearby Search 무료, detail API 90 달러
     # grids_per_partition = 1000  # 1000개의 격자점 처리 => Nearby Search 호출 1,000회, detail API 호출 20,000회 => Nearby Search 무료, detail API 180 달러
-    grids_per_partition = 10  # 1500개의 격자점 처리 => Nearby Search 호출 1,500회, detail API 호출 30,000회 => Nearby Search 무료, detail API 270 달러
+    # grids_per_partition = 1500  # 1500개의 격자점 처리 => Nearby Search 호출 1,500회, detail API 호출 30,000회 => Nearby Search 무료, detail API 270 달러
     # grids_per_partition = 2000  # 2000개의 격자점 처리 => Nearby Search 호출 2,000회, detail API 호출 40,000회 => Nearby Search 무료, detail API 360 달러
 
     try:
@@ -307,7 +308,7 @@ def main():
         partitions = make_korea_partitions()
 
         # 1부터 10까지 순차적으로 처리
-        for worker_id in range(10, 11):  # 1~10
+        for worker_id in range(1, 11):  # 1~10
             print(f"\n=== Processing Worker {worker_id} ===")
             
             # 각 worker_id에 맞는 collector 인스턴스 생성

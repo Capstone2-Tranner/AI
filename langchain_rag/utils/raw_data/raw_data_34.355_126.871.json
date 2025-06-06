@@ -1,0 +1,643 @@
+{
+    "grid_info": {
+        "lat": 34.354804,
+        "lng": 126.87133766666666,
+        "radius": 112335,
+        "step_deg": 1.4198069999999987,
+        "grid_number": 0
+    },
+    "places": [
+        {
+            "formatted_address": "대한민국 전라남도 여수시",
+            "geometry": {
+                "location": {
+                    "lat": 34.7610473,
+                    "lng": 127.6629076
+                }
+            },
+            "name": "여수시",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 청산면",
+            "geometry": {
+                "location": {
+                    "lat": 34.1770897,
+                    "lng": 126.860794
+                }
+            },
+            "name": "다도해해상국립공원 소안청산 지구",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "park",
+                "point_of_interest",
+                "establishment"
+            ],
+            "website": "https://www.knps.or.kr/dadohae"
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 고금면",
+            "geometry": {
+                "location": {
+                    "lat": 34.445463,
+                    "lng": 126.8300651
+                }
+            },
+            "name": "고금대교",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 4.1,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "4년 전",
+                    "text": "전남 강진군 마량면과 완도군 고금면(고금도)을 잇는\n다리이다. 완도 고금면 주민들과, 고금도와 이미 다리로\n연결된 완도 약산면(조약도) 주민 8000여 명은 지금까지\n배를 타고 40여 분 걸려 육지로 나갔으나, 앞으로는\n자동차로 5분밖에 걸리지 않게 됐다.\n8년 만에 완공된 이 다리는 횃불형 교각에 아치형 상판이 얹혔다.\n길이 760m로, 접속도로 등 총 4710m 건설에 743억원이 들었다.\n\n전남 남부권의 경우 약산과 고금을 잇는 연도교, 완도와 신지를\n잇는 신지대교가 이미 완공돼 사람과 물자가 오가고 있다.\n이번에 고금대교가 개통됨으로써 강진 마량에서 완도 고금과\n약산이 연결됐다.\n\n아주 조용한 수면이 인상적이었다\n석양 무렵에  들려본 김 양식장과 매생이 양식장이\n사무냥 반가웠다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "1년 전",
+                    "text": "강경에서 저녁식사후 장보고빵(전복빵)을 사러 가면서 지나간 고금대교!\n고금대교가 아니였으면 차량으로 가보지도 못했을텐데^^;;;\n편하게 완도로 이동을 할수 있어서 좋네요^^\n\n전라남도 완도군 고금면과 강진군 마량면 마량리를 잇는 교량으로 2007년 6월 29일 개통되었다. 육지와 섬을 연결하는 연륙교(連陸橋)로 고금도(古今島)와 육지방면 강진군 마량면을 연결한다.\n1999년 공사를 시작하여 8년 여의 공사기간이 소요되었으며, 743억원의 공사비가 투입되었다. 일반국도 77호선에 속하는 왕복 2차선 도로로 완성되었다.\n교량의 길이는 760m, 폭(너비)은 18.5m이며 교각과 교각 사이의 거리를 나타내는 경간장의 최대 길이는 160m이다.\n상부구조는 아치교 형식으로 건설되었으며 교각은 횃불모양으로 만들어졌다.\n교량이 개통되기 전 고금도와 마량지역의 주민들은 고금-마량 해협을 배로 건너는데 40분이 걸렸으나 교량 건설 이후 5분 이내로 단축되어 주민들의 생활수준이 크게 개선되었다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "강진마량과 완도군을 연결해주는 고마운 다리. 그동안 마량에서 완도읍을 갈려면 강진만을 거슬러 올라간 후 완도대교를 건너서 가야했기에 한시간여 소요됐었다. 그런데 고금대교와 장보고대교를 건너 바다를 질러가면 이십여분내에 도착한다."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "고금도를 육지와 연결. 일출 촬영장소"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "1년 전",
+                    "text": "날이 흐려 일몰 사진을 못 담은게 아쉽습니다.."
+                }
+            ],
+            "types": [
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 신지면",
+            "geometry": {
+                "location": {
+                    "lat": 34.335052,
+                    "lng": 126.7473704
+                }
+            },
+            "name": "신지대교",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 24시간 영업",
+                    "화요일: 24시간 영업",
+                    "수요일: 24시간 영업",
+                    "목요일: 24시간 영업",
+                    "금요일: 24시간 영업",
+                    "토요일: 24시간 영업",
+                    "일요일: 24시간 영업"
+                ]
+            },
+            "rating": 3.9,
+            "reviews": [
+                {
+                    "rating": 3,
+                    "relative_time_description": "3년 전",
+                    "text": "복잡하지않고 시원하게 달릴수있어요~\n달리면서본 완도바다가경치~\n좋으네요~^^"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "완도에 왔다가 신지명사십리 해수욕장에 가면서 건너가보게된 신지대교^^\n전라남도 완도군 완도읍과 신지면을 잇는 교량이라고 합니다.\n요즘 대교처럼 크고 웅장하지는 않지만 실용적으로 잘 맞게 지어진 교량 같네요.\n\n신지대교에 대해 간략하게 정리된거 올려드리겠습니다^^\n전라남도 완도군 완도읍 가용리와 신지면 송곡리를 잇는 교량으로, 2006년 준공되었다.\n섬과 섬을 연결하는 연도교(連島橋)로 완도(莞島)와 신지도(薪智島)를 잇는 다리이다.\n1997년 10월 공사를 시작하여 8년의 공사기간이 소요되었으며, 818억원의 공사비가 투입되었다. 일반국도 77호선에 속하는 도로로, 왕복 3차선 도로로 개통되었다.\n교량의 길이는 840m, 폭(너비)은 15.5m, 교량의 높이는 35.0m 이며, 교각과 교각 사이의 거리를 나타내는 경간장의 최대 길이는160m이다. 상부구조는 강상자형교 형식, 하부구조는 벽식으로 건설되었다.\n교량 주변 신지도 방면에는 신지대교 휴게소, 강독선착장이 위치하고 있으며, 완도 방면에는 완도농공단지, 완도해양경찰서 전용부두가 위치한다. 교량 관리는 익산지방국토관리청에서 관리책임을 맡고 있다."
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "완도>신지 방향 휴계소 화장실 있음"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "완도군 신지대교"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "2년 전",
+                    "text": "신지대교"
+                }
+            ],
+            "types": [
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 장흥군 회진면 회진리",
+            "geometry": {
+                "location": {
+                    "lat": 34.46681549999999,
+                    "lng": 126.9629733
+                }
+            },
+            "name": "회진대교",
+            "rating": 4.4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "멋지네요 ㅡ\n주변경관도 좋아서 사진몇장 올립니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "장흥에서 일이 일찍 끝나서 노력항으로 바람쐬러 가면서 지나가본 회진대교!\n날씨가 풀려서 경관이 멋지네요^^\n이런걸 보면서 스트레스도 풀면서 바람쐬러 다닙니다...\n\n회진면 육지와 노력도를 잇는 회진대교가 건설되어 육지화되었다. 회진대교에서 노력항 터미널까지 해안도로로 연결되어 있으며 해안은 대부분이 사질 해안이고 서쪽 해안에는 간석지가 발달하여 있다. 노력도항 앞에는 금당도와 조약도 그 사이에 금일도, 생일도가 보인다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "8년 전",
+                    "text": "노력도로 들어가는 연륙교."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "경치가 좋네요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "와우...남해가 내 품안에..."
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 장흥군 대덕읍 연정리",
+            "geometry": {
+                "location": {
+                    "lat": 34.4988466,
+                    "lng": 126.8922525
+                }
+            },
+            "name": "신월대교",
+            "rating": 4.5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": "아이들이 놀기좋은 공터"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "8년 전",
+                    "text": "2015년 새로 지어진 다리"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 고흥군 금산면 신촌리",
+            "geometry": {
+                "location": {
+                    "lat": 34.4964619,
+                    "lng": 127.1277304
+                }
+            },
+            "name": "거금대교",
+            "rating": 4.4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "거금대교는 특이하게 다리를 잡아주는 로프가 중앙에 있습니다. 휴게소에소 보는 뷰가 좋습니다. 고흥이라는곳을 가는게 쉽지는 않지만 소록대교지나서 거금대교까지 바다에 작은섬들 이국적인 분위기입니다.\n휴계소는 양쪽으로 있고 대교가 바라보는쪽엔 유람선 선착장과 연결되어있고 반대편 휴계소는 농산물과 국수를 판매합니다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "다리건너는 느낌도 좋고 주변 풍광도 너무 좋다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "주변 오션뷰도 너무나 아름답고 금빛대교의 찬란함, 위용이 느껴진다."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "\"소록도.녹동항.거금도\""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "아름다운곳  한려해상  한번쯤은  가봐도  후회안할듯  섬들이  이뻐요"
+                }
+            ],
+            "types": [
+                "tourist_attraction",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 장흥군 안양면 수양리",
+            "geometry": {
+                "location": {
+                    "lat": 34.65860670000001,
+                    "lng": 126.9615198
+                }
+            },
+            "name": "수대교",
+            "rating": 4,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 보길면",
+            "geometry": {
+                "location": {
+                    "lat": 34.1705466,
+                    "lng": 126.5642077
+                }
+            },
+            "name": "보길대교",
+            "rating": 4.8,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "아침과 저녁노을이 너무너무 이쁜다리입니다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "3년 전",
+                    "text": "유용합니다.\n걸어서 건널 수 있음."
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "7년 전",
+                    "text": "짧지만 아주 멋진 다리"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 고흥군",
+            "geometry": {
+                "location": {
+                    "lat": 34.5448175,
+                    "lng": 127.1397281
+                }
+            },
+            "name": "도양읍농어촌복합체육관",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": "시설이 깨끗하고 좋았습니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": "시설도 깔끔하고 좋아요"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": "배드민턴을 칠수있는 네트가 있습니다"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "예약하고 쓸수있어요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "운동하기좋은곳"
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 장흥군 장흥읍 평화리",
+            "geometry": {
+                "location": {
+                    "lat": 34.6729096,
+                    "lng": 126.9035249
+                }
+            },
+            "name": "장흥대교",
+            "rating": 3.9,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": "물 축제.. 최고.. 1박은 해야되요.. 많이 알려지지 않었어요.. 여름엔 들러봐야할곳.. 강이 흘러 깨끗해요"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 강진군 강진읍 남포리 548",
+            "geometry": {
+                "location": {
+                    "lat": 34.6200803,
+                    "lng": 126.7739273
+                }
+            },
+            "name": "남포축구장",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "1년 전",
+                    "text": "갈대숲이 아름다우며 데크길은 데이트장소로 굿!"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 2,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 강진군 신전면 용월리 731-24",
+            "geometry": {
+                "location": {
+                    "lat": 34.5136754,
+                    "lng": 126.7210182
+                }
+            },
+            "name": "하나로마트",
+            "rating": 4.3,
+            "reviews": [
+                {
+                    "rating": 4,
+                    "relative_time_description": "7년 전",
+                    "text": "참 편리한 장소입니다"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "4년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "5년 전",
+                    "text": ""
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "6년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 완도군",
+            "geometry": {
+                "location": {
+                    "lat": 34.2141811,
+                    "lng": 126.6087859
+                }
+            },
+            "name": "천혜감리교회",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 해남군 현산면 일평리 835-1",
+            "geometry": {
+                "location": {
+                    "lat": 34.457957,
+                    "lng": 126.552952
+                }
+            },
+            "name": "현산 하나로마트",
+            "opening_hours": {
+                "weekday_text": [
+                    "월요일: 오전 7:30 ~ 오후 6:00",
+                    "화요일: 오전 7:30 ~ 오후 6:00",
+                    "수요일: 오전 7:30 ~ 오후 6:00",
+                    "목요일: 오전 7:30 ~ 오후 6:00",
+                    "금요일: 오전 7:30 ~ 오후 6:00",
+                    "토요일: 오전 7:30 ~ 오후 6:00",
+                    "일요일: 오전 7:30 ~ 오후 6:00"
+                ]
+            },
+            "rating": 4.1,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "공상품은 물론이고 로컬푸드와 싱싱한 재료 준비로 여행객 방문도 많아요"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "2년 전",
+                    "text": "집에서 가까운가리에 있어 편리하게 이용하고 있습니다.작지만 나름 있을건 다 있습니다"
+                },
+                {
+                    "rating": 3,
+                    "relative_time_description": "2년 전",
+                    "text": "별로 .... 장은 시내에서 미리 봐오셔요\n정말 아무겄도 없어요 ㅎㅎ"
+                },
+                {
+                    "rating": 4,
+                    "relative_time_description": "4년 전",
+                    "text": "좋아요먹거리 필수품  매장내   빵집 빵은 정말맛있어요  강추"
+                },
+                {
+                    "rating": 5,
+                    "relative_time_description": "3년 전",
+                    "text": "지방에 있는 마트인데도...다양한 제품이 많음"
+                }
+            ],
+            "types": [
+                "shopping_mall",
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 완도읍 대야리",
+            "geometry": {
+                "location": {
+                    "lat": 34.375525,
+                    "lng": 126.7202438
+                }
+            },
+            "name": "터널",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 고흥군 금산면 신촌리",
+            "geometry": {
+                "location": {
+                    "lat": 34.47938060000001,
+                    "lng": 127.1245922
+                }
+            },
+            "name": "금진터널",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 고흥군 도양읍 소록리",
+            "geometry": {
+                "location": {
+                    "lat": 34.5095993,
+                    "lng": 127.1298965
+                }
+            },
+            "name": "소록터널",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 완도군 신지면 대곡리 833-1",
+            "geometry": {
+                "location": {
+                    "lat": 34.3378368,
+                    "lng": 126.8282901
+                }
+            },
+            "name": "KT 신지분기국사",
+            "rating": 5,
+            "reviews": [
+                {
+                    "rating": 5,
+                    "relative_time_description": "2년 전",
+                    "text": ""
+                }
+            ],
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ]
+        },
+        {
+            "formatted_address": "대한민국 전라남도 해남군",
+            "geometry": {
+                "location": {
+                    "lat": 34.5743438,
+                    "lng": 126.5908497
+                }
+            },
+            "name": "해남군",
+            "types": [
+                "locality",
+                "political"
+            ]
+        }
+    ]
+}
