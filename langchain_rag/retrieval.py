@@ -29,7 +29,7 @@ class VectorStoreRetriever:
         this_file = Path(__file__).resolve()
         langchain_rag_dir = this_file.parent  # → …/Capstone2/langchain_rag
 
-        self.db_dir = langchain_rag_dir / "utils" / "data" / "vector_db"
+        self.db_dir = langchain_rag_dir / "utils" / "data" / "embedding_data"
 
 
         # 실 파일이 있는 경로로 idx_path를 설정
@@ -50,11 +50,39 @@ class VectorStoreRetriever:
                 print(f"DEBUG: 인덱스 파일 존재 여부 → {self.idx_path.resolve()} : {self.idx_path.exists()}")
                 raise FileNotFoundError(f"인덱스 파일이 없습니다: {self.idx_path}")
             self.index = faiss.read_index(str(self.idx_path))
-            
+
+    def _load_records(self) -> None:
+            """
+            JSON 파일에서 "texts" 키에 해당하는 리스트를 self.records에 저장합니다.
+            """
+            if self.records:
+                return
+
+            if not self.txt_path.exists():
+                raise FileNotFoundError(f"메타데이터 JSON 파일이 없습니다: {self.txt_path}")
+
+            with open(self.txt_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            # 최상위가 딕셔너리여야 하고, "texts" 키가 있어야 함
+            if not isinstance(data, dict) or "texts" not in data:
+                raise ValueError(f"메타데이터 JSON 형식이 잘못되었습니다: 'texts' 키를 찾을 수 없음")
+
+            texts_list = data["texts"]
+            if not isinstance(texts_list, list):
+                raise ValueError(f"'texts' 필드가 리스트가 아닙니다: {type(texts_list)}")
+
+            # 각 요소가 문자열인지 검증(선택 사항)
+            for i, item in enumerate(texts_list):
+                if not isinstance(item, str):
+                    raise ValueError(f"'texts' 리스트의 {i}번째 항목이 문자열이 아닙니다: {type(item)}")
+
+            self.records = texts_list
+
     def retrieve(
         self,
         query: str,
-        top_k: int = 10,
+        top_k: int,
     ) -> List[Dict[str, Any]]:
         """
         주어진 쿼리 문장을 임베딩하여 FAISS에서 유사도가 높은 상위 top_k개의 장소 정보를 반환합니다.

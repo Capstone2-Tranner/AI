@@ -83,3 +83,5 @@ pip-wheel-metadata/
 # ───────────────────────────────
 # secrets.yaml
 # *.key
+vector_db/*
+LangChain_Rag/raw_data/*

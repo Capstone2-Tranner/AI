@@ -1,122 +1,69 @@
-'''
-6.
-    목적:
-        검색된 결과를 바탕으로 LLM에 입력할 프롬프트를 생성한다.
-    방법:
-        retrieval에서 얻은 검색 결과를 적절한 형식으로 가공하여 프롬프트를 생성한다.
-        프롬프트는 시스템 메시지, 사용자 메시지, 컨텍스트 등으로 구성된다.
-    후속 처리:
-        생성된 프롬프트는 LLM에 입력되어 최종 응답을 생성한다.
-'''
-# utils/make_prompt.py
+from typing import List, Dict
 
-def make_prompt(data: dict) -> str:
+def make_prompt(request_data: Dict, retrieval_output: List[str]) -> str:
     """
-    여행 일정 생성을 위한 프롬프트 문자열을 생성합니다.
-    - data: {
-        "places": [ {name, address, location, type, rating, reviewSummary}, ... ],
-        "howManyPeople": int or str,
-        "startDate": "YYYY-MM-DD",
-        "endDate": "YYYY-MM-DD"
-      }
-    반환값: Claude에게 전달할 프롬프트 문자열 (한국어)
+    Claude에게 전달할 여행 일정 계획 프롬프트를 생성합니다.
+
+    Args:
+        request_data: 프론트엔드로부터 받은 원본 요청 데이터. 형식 예시:
+            {
+                "travel_period": {"start_date": "YYYY-MM-DD", "end_date": "YYYY-MM-DD"},
+                "group": {"num_people": int, "ages": [str, ...]},
+                "budget": {"min": int, "max": int},
+                "region": str,
+                "transportation_preferences": [str, ...],
+                "travel_style_preferences": {"prefer": [str], "nonPrefer": [str]}
+            }
+        retrieval_output: VectorStoreRetriever로부터 반환된 장소 리스트. 각 요소는
+            "주소: ...\n위치: ...\n장소명: ...\n평점: ...\n유형: ...\n리뷰 요약: ..."
+
+    Returns:
+        Claude에게 보낼 프롬프트 문자열 (한국어)
     """
-    # 1. 딕셔너리에서 값 추출
-    places = data.get("places", [])
-    people = data.get("howManyPeople", "")
-    start = data.get("startDate", "")
-    end   = data.get("endDate", "")
+    # 1. 요청 데이터에서 여행 정보 추출
+    period = request_data.get("travel_period", {})
+    start_date = period.get("start_date", "")
+    end_date = period.get("end_date", "")
+    num_people = request_data.get("group", {}).get("num_people", "")
+    region = request_data.get("region", "")
+    transport = request_data.get("transportation_preferences", [])
+    style_pref = request_data.get("travel_style_preferences", {})
+    prefer = style_pref.get("prefer", [])
+    non_prefer = style_pref.get("nonPrefer", [])
 
-    # 2. 기본 여행 정보 소개
-    prompt = (
-        f"당신은 여행 일정 계획 전문가 AI입니다.\n"
-        f"여행 인원: {people}명\n"
-        f"여행 기간: {start}부터 {end}까지\n\n"
-    )
+    # 2. 기본 프롬프트
+    prompt = []
+    prompt.append("당신은 여행 일정 계획 전문가 AI입니다.")
+    prompt.append(f"여행 인원: {num_people}명")
+    prompt.append(f"여행 기간: {start_date}부터 {end_date}까지")
+    prompt.append(f"여행 지역: {region}")
+    if transport:
+        prompt.append(f"교통 수단 선호: {', '.join(transport)}")
+    if prefer or non_prefer:
+        prompt.append(
+            f"여행 스타일 선호: {', '.join(prefer)}",)
+        prompt.append(
+            f"비선호 스타일: {', '.join(non_prefer)}")
+    prompt.append("\n### 검색된 장소 정보(상위 10개) ###")
 
-    # 3. 추천 장소 상세 정보 나열
-    prompt += "### 추천 여행지 정보\n"
-    for idx, place in enumerate(places, start=1):
-        prompt += (
-            f"{idx}. 장소명: {place.get('name','')}\n"
-            f"   주소: {place.get('address','')}\n"
-            f"   위치: {place.get('location','')}\n"
-            f"   유형: {place.get('type','')}\n"
-            f"   평점: {place.get('rating','')}\n"
-            f"   리뷰 요약: {place.get('reviewSummary','')}\n\n"
-        )
-    # 4. 출력 형식 및 요구 사항 명시 (수정된 부분)
-    prompt += (
-        "### 요구 사항\n"
-        "- 위 정보를 바탕으로 여행 일정을 계획하세요.\n"
-        "- **JSON 형식**으로만 결과를 출력해야 합니다 (추가 설명 금지).\n"
-        "- JSON 구조는 다음 예시를 따르세요:\n"
-        "{\n"
-        '  "country_name": "대한민국",\n'
-        '  "region_name": "서울",\n'
-        f'  "start_date": "{start}",\n'
-        f'  "end_date": "{end}",\n'
-        '  "detailSchedule": [\n'
-        '    {\n'
-        '      "day_seq": 1,\n'
-        '      "scheduleByDay": [\n'
-        '        {\n'
-        '          "location_seq": 1,\n'
-        '          "start_time": "08:00",\n'
-        '          "end_time": "09:30",\n'
-        '          "place_id": "ChIJ...abc",\n'
-        '          "place_name": "경복궁",\n'
-        '          "place_type": "tourist_attraction",\n'
-        '          "address": "서울특별시 종로구 사직로 161",\n'
-        '          "latitude": 37.579617,\n'
-        '          "longitude": 126.977041\n'
-        '        },\n'
-        '        {\n'
-        '          "location_seq": 2,\n'
-        '          "start_time": "10:00",\n'
-        '          "end_time": "10:30",\n'
-        '          "place_id": "ChIJ...xyz",\n'
-        '          "place_name": "카페온",\n'
-        '          "place_type": "cafe",\n'
-        '          "address": "서울특별시 마포구 양화로 45",\n'
-        '          "latitude": 37.556345,\n'
-        '          "longitude": 126.922071\n'
-        '        }\n'
-        '      ]\n'
-        '    },\n'
-        '    {\n'
-        '      "day_seq": 2,\n'
-        '      "scheduleByDay": [\n'
-        '        {\n'
-        '          "location_seq": 1,\n'
-        '          "start_time": "08:00",\n'
-        '          "end_time": "09:30",\n'
-        '          "place_id": "ChIJ...pqr",\n'
-        '          "place_name": "N서울타워",\n'
-        '          "place_type": "tourist_attraction",\n'
-        '          "address": "서울특별시 용산구 남산공원길 105",\n'
-        '          "latitude": 37.551169,\n'
-        '          "longitude": 126.988226\n'
-        '        },\n'
-        '        {\n'
-        '          "location_seq": 2,\n'
-        '          "start_time": "10:00",\n'
-        '          "end_time": "10:30",\n'
-        '          "place_id": "ChIJ...stu",\n'
-        '          "place_name": "스타벅스 명동점",\n'
-        '          "place_type": "cafe",\n'
-        '          "address": "서울특별시 중구 명동길 26",\n'
-        '          "latitude": 37.563005,\n'
-        '          "longitude": 126.982679\n'
-        '        }\n'
-        '      ]\n'
-        '    }\n'
-        '  ]\n'
-        '}\n'
-        "- 위 예시와 같은 필드 이름(`country_name`, `region_name`, `start_date`, `end_date`, `detailSchedule` 등)과\n"
-        "  구조를 반드시 지켜주세요.\n"
-        "- `day_seq`와 `location_seq`는 정수로, `latitude`/`longitude`는 숫자로, 시간(`start_time`/`end_time`)은 HH:MM 형식으로 출력합니다.\n"
-        "- 응답은 오직 JSON 데이터만 출력하세요. 불필요한 문장이나 코드블럭을 포함하지 마세요.\n"
-    )
+    # 3. retrieval_output 나열
+    for idx, info in enumerate(retrieval_output, start=1):
+        prompt.append(f"{idx}. {info}")
+    # 4. Hallucination 방지 지침 추가
+    prompt.append("\n### 주의사항 ###")
+    prompt.append("- 검색된 장소 정보 이외의 어떠한 정보도 추가하지 마세요.")
+    prompt.append("- 제공된 데이터 외에는 절대 새로 생성하지 마세요.")
+    prompt.append("- 필드에 값이 없으면 '알 수 없음'으로 표시하세요.")
 
-    return prompt
+    # 5. JSON 출력 요구사항
+    prompt.append("위 검색 결과를 바탕으로, 여행 일정을 다음 JSON 구조에 맞춰 작성하세요.")
+    prompt.append("하루에 장소는 최소 3개 이상 포함되어야 하며, 각 장소는 식당, 관광지, 숙소 등 다양한 유형을 포함해야 합니다.")
+    prompt.append("- 응답은 오직 JSON으로만 이루어져야 합니다. 추가 설명 금지.")
+    prompt.append("- 필드 이름과 구조를 정확히 지켜야 합니다.")
+    prompt.append("- 시간은 HH:MM 형식, 위도/경도는 숫자, 순번은 정수로 표시하세요.")
+    prompt.append("### JSON 예시 ###")
+    prompt.append(
+"{\n  \"country_name\": \"대한민국\",\n  \"region_name\": \"서울\",\n  \"start_date\": \"" + start_date + "\",\n  \"end_date\": \"" + end_date + "\",\n  \"detailSchedule\": [\n    {\n      \"day_seq\": 1,\n      \"scheduleByDay\": [\n        {\n          \"location_seq\": 1,\n          \"start_time\": \"08:00\",\n          \"end_time\": \"09:30\",\n                  \"place_name\": \"경복궁\",\n          \"place_type\": \"tourist_attraction\",\n          \"address\": \"서울특별시 종로구 사직로 161\",\n          \"latitude\": 37.579617,\n          \"longitude\": 126.977041\n        }\n      ]\n    }\n  ]\n}")
+
+    # 결합 후 반환
+    return "\n".join(prompt)
