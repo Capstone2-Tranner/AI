@@ -15,18 +15,20 @@ from langchain.schema import HumanMessage
 
 app = FastAPI(title="Tranner RAG API", version="1.0.0")
 # VectorStoreRetriever 인스턴스를 애플리케이션 시작 시 한 번만 생성
-retriever = VectorStoreRetriever(db_dir=Path("data/vector_db"))
+retriever = VectorStoreRetriever(db_dir=Path("langchain_rag/utils/data/vector_db"))
 
 @app.post("/plan")
 def plan_route(
     # 백엔드로부터 오는 원본 JSON 전체를 data로 받습니다.
     data: dict = Body(...)
 ):
+    print(f"Received data: {data}")
     # 1) 전처리: JSON → 자연어 검색 쿼리 생성
     retrieval_query = pre_processing(data)
-
+    print(f"retrieval_query: {retrieval_query}")
     # 2) 벡터 스토어에서 조회: 상위 10개 장소 정보 반환
     retrieval_output = retriever.retrieve(retrieval_query, top_k=10)
+    print(f"retrieval_output: {retrieval_output}")
 
     # 3) 프롬프트 생성: RAG 결과(retrieval_output)로 여행 계획 작성용 프롬프트 생성
     prompt = make_prompt(retrieval_output)

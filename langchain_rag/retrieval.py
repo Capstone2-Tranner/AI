@@ -11,45 +11,73 @@
 from pathlib import Path
 import json
 from typing import List, Union, Dict, Any
-
+import os
 import faiss
 import numpy as np
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
+
 class VectorStoreRetriever:
-    def __init__(
-        self,
-        db_dir: Union[Path, str] = "data/vector_db",
-        model_name: str = "BM-K/KoSimCSE-roberta",
-    ):
-        # (1) 파일 경로 객체 세팅
-        self.db_dir = Path(db_dir)
-        self.idx_path = self.db_dir / "faiss_index_hnsw.idx"
-        self.txt_path = self.db_dir / "texts.json"
+    def __init__(self,
+                 db_dir: Union[Path, str] = None,
+                 model_name: str = "BM-K/KoSimCSE-roberta"):
+        # (디버그) 현재 작업 디렉터리(CWD) 확인
+        print("DEBUG: 현재 CWD =", os.getcwd())
 
-        # (2) 지연 로드(lazy-load)용 캐시 변수
+        # 이 파일(retrieval.py)의 절대경로 → …/Capstone2/langchain_rag/retrieval.py
+        this_file = Path(__file__).resolve()
+        langchain_rag_dir = this_file.parent  # → …/Capstone2/langchain_rag
+
+        self.db_dir = langchain_rag_dir / "utils" / "data" / "vector_db"
+
+
+        # 실 파일이 있는 경로로 idx_path를 설정
+        self.idx_path = self.db_dir / "faiss_index.index"
+        self.txt_path = self.db_dir / "faiss_index.meta.json"
+
         self.index: faiss.Index | None = None
-        self.records: List[Dict[str, Any]] = []  # texts.json에 저장된 장소 정보 리스트
-
-        # (3) 질의(Query)용 KoSimCSE 임베더
+        self.records: List[Dict[str, Any]] = []
         self._embedder = HuggingFaceEmbeddings(model_name=model_name)
 
     def _load_index(self) -> None:
-        """
-        FAISS 인덱스를 파일에서 읽어와 초기화합니다.
-        """
+        print("DEBUG: self.db_dir =", self.db_dir)
+        print("DEBUG: self.idx_path.resolve() =", self.idx_path.resolve())
+
         if self.index is None:
+            print("로드하려는 FAISS 인덱스 경로:", self.idx_path)
+            if not self.idx_path.exists():
+                print(f"DEBUG: 인덱스 파일 존재 여부 → {self.idx_path.resolve()} : {self.idx_path.exists()}")
+                raise FileNotFoundError(f"인덱스 파일이 없습니다: {self.idx_path}")
             self.index = faiss.read_index(str(self.idx_path))
 
     def _load_records(self) -> None:
-        """
-        색인된 문장뿐 아니라 장소 정보 딕셔너리 리스트를 JSON 파일에서 읽어옵니다.
-        texts.json에는 각 문장별 메타정보(장소ID, 지역, 카테고리, 위치, 평점 등)를 담고 있어야 합니다.
-        """
-        if not self.records:
-            with open(self.txt_path, encoding="utf-8") as f:
-                self.records = json.load(f)
+            """
+            JSON 파일에서 "texts" 키에 해당하는 리스트를 self.records에 저장합니다.
+            """
+            if self.records:
+                return
+
+            if not self.txt_path.exists():
+                raise FileNotFoundError(f"메타데이터 JSON 파일이 없습니다: {self.txt_path}")
+
+            with open(self.txt_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            # 최상위가 딕셔너리여야 하고, "texts" 키가 있어야 함
+            if not isinstance(data, dict) or "texts" not in data:
+                raise ValueError(f"메타데이터 JSON 형식이 잘못되었습니다: 'texts' 키를 찾을 수 없음")
+
+            texts_list = data["texts"]
+            if not isinstance(texts_list, list):
+                raise ValueError(f"'texts' 필드가 리스트가 아닙니다: {type(texts_list)}")
+
+            # 각 요소가 문자열인지 검증(선택 사항)
+            for i, item in enumerate(texts_list):
+                if not isinstance(item, str):
+                    raise ValueError(f"'texts' 리스트의 {i}번째 항목이 문자열이 아닙니다: {type(item)}")
+
+            self.records = texts_list
 
     def retrieve(
         self,

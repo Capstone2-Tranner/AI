@@ -14,7 +14,7 @@ from sklearn.preprocessing import normalize
 from langchain_community.embeddings import HuggingFaceEmbeddings  # KoSimCSE
 # from sentence_transformers import SentenceTransformer #gte
 
-from langchain_rag.utils.local_storage import S3
+from local_storage import LocalStorage
 
 # 프로젝트 루트 디렉토리를 Python 경로에 추가
 CURRENT_DIR = Path(__file__).resolve().parent
@@ -22,7 +22,7 @@ PROJECT_ROOT = CURRENT_DIR.parent.parent  # utils의 상위 디렉토리의 상�
 sys.path.append(str(PROJECT_ROOT))
 
 # store_vector.py에서 필요한 함수들 import
-from langchain_rag.utils.store_vector import create_hnsw_index, save_metadata
+from store_vector import create_hnsw_index, save_metadata
  
 # 환경 변수 로드
 load_dotenv()
@@ -39,15 +39,15 @@ DEFAULT_META_PATH = Path(
 class EmbedFromS3:
     def __init__(
         self,
-        folder_path: str = "test/raw_data/",        # S3 폴더 경로
+        folder_path: str = "pre_processed_data/",        # S3 폴더 경로
         model_name: str = "BM-K/KoSimCSE-roberta", # 임베딩 모델명
         # model_name: str = "thenlper/gte-base", 
         batch_size: int = 64                   # 배치 크기
     ):
         self.folder_path = folder_path
         self.batch_size = batch_size
-        self._s3 = S3()
-        self._model = HuggingFaceEmbeddings(model_name)
+        self.localstorage = LocalStorage()
+        self._model = HuggingFaceEmbeddings(model_name = model_name)
         # self._model = SentenceTransformer(model_name)
 
     # ──────────────────────────
@@ -55,12 +55,11 @@ class EmbedFromS3:
     # ──────────────────────────   
     def _save_to_vector_store(self, texts: List[str], vectors: np.ndarray) -> None:
             """
-            벡터와 메타데이터를 S3에 저장
+            벡터와 메타데이터를 vector_db에 저장
             """
-            self._s3.save_vector_store(
+            create_hnsw_index(
                 texts=texts,
-                vectors=vectors,
-                base_path="embedding"
+                vectors=vectors
             )
     
     # ──────────────────────────
@@ -85,9 +84,9 @@ class EmbedFromS3:
         """
         # 1) 텍스트 읽기
         texts = (
-            self._s3.get_all_places_from_json(file_path)
+            self.localstorage.get_all_places_from_json(file_path)
             if file_path.lower().endswith(".json")
-            else self._s3.get_all_places_from_txt(file_path)
+            else self.localstorage.get_all_places_from_txt(file_path)
         )
         # 2) 임베딩
         vectors = self._embed_texts(texts)
@@ -106,13 +105,13 @@ class EmbedFromS3:
         2) 순차 임베딩 + 정규화
         3) HNSW 인덱스와 메타데이터 저장
         """
-        keys = self._s3.list_first_n_files(self.folder_path, k)
+        keys = self.localstorage.list_first_n_files(self.folder_path, k)
         all_texts: List[str] = []
         print(f"[DEBUG] embed_k_files 시작: 처리할 파일 수 = {len(keys)}")
         for idx, key in enumerate(keys, start=1):
             print(f"[DEBUG] ({idx}/{len(keys)}) 파일 읽는 중: {key}")
             # 파일별 텍스트 추출
-            texts = self._s3.get_all_places_from_json(key)
+            texts = self.localstorage.get_all_places_from_json(key)
             print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
             all_texts.extend(texts)
 
@@ -136,16 +135,15 @@ class EmbedFromS3:
         2) 파일별로 배치 단위 임베딩 + 정규화
         3) HNSW 인덱스와 메타데이터 저장
         """
-        file_list = self._s3.list_files_in_folder(self.folder_path)
+        file_list = self.localstorage.list_files_in_folder(self.folder_path)
         all_texts: List[str] = []
         print(f"[DEBUG] embed_all 시작: 폴더 내 파일 수 = {len(file_list)}")
         for idx, fp in enumerate(file_list, start=1):
             print(f"[DEBUG] ({idx}/{len(file_list)}) 파일 읽는 중: {fp}")
             # 전체 파일 텍스트 추출
-            if fp.lower().endswith(".json"):
-                texts = self._s3.get_all_places_from_json(fp)
-            else:
-                texts = self._s3.get_all_places_from_txt(fp)
+            if fp.lower().endswith(".txt"):
+                texts = self.localstorage.get_all_places_from_predata(fp)
+
             print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
             all_texts.extend(texts)
 
@@ -166,19 +164,20 @@ class EmbedFromS3:
 if __name__ == "__main__":
     import argparse
  
-    parser = argparse.ArgumentParser()
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--file", help="단일 S3 키 지정")
-    group.add_argument("--n", type=int, metavar="N", help="첫 N개 파일 처리")
-    group.add_argument("--all", action="store_true", help="폴더 전체 처리")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # group = parser.add_mutually_exclusive_group(required=True)
+    # group.add_argument("--file", help="단일 S3 키 지정")
+    # group.add_argument("--n", type=int, metavar="N", help="첫 N개 파일 처리")
+    # group.add_argument("--all", action="store_true", help="폴더 전체 처리")
+    # args = parser.parse_args()
  
     emb = EmbedFromS3()
-    if args.file:
-        texts, vecs = emb.embed_file(args.file)
-    elif args.n is not None:
-        texts, vecs = emb.embed_k_files(args.n)
-    else:
-        texts, vecs = emb.embed_all()
+    texts, vecs = emb.embed_all()
+    # if args.file:
+    #     texts, vecs = emb.embed_file(args.file)
+    # elif args.n is not None:
+    #     texts, vecs = emb.embed_k_files(args.n)
+    # else:
+        # texts, vecs = emb.embed_all()
  
     print(f" 임베딩 및 저장 완료 • 총 {len(texts)}개 • shape={vecs.shape}")
