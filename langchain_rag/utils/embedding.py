@@ -62,102 +62,44 @@ class EmbedFromS3:
                 vectors=vectors
             )
     
-    # ──────────────────────────
-    # raw 데이터 임베딩
-    # ──────────────────────────
+    # ───────────────────────────────────────────────
+    # 수정 ① : _embed_texts() 를 배치 기반으로 분할 호출
+    # ───────────────────────────────────────────────
     def _embed_texts(self, texts: List[str]) -> np.ndarray:
-        """
-        주어진 텍스트 리스트를 임베딩한 뒤 L2 정규화하여 반환
-        """
-        embs = self._model.embed_documents(texts)
-        # embs = self._model.encode(texts, show_progress_bar=False) # gte (sentence_transformers)
-        return normalize(np.asarray(embs, dtype="float32"), norm="l2")
- 
-    # ──────────────────────────
-    # 1. 단일 파일 임베딩
-    # ──────────────────────────
-    def embed_file(self, file_path: str) -> Tuple[List[str], np.ndarray]:
-        """
-        1) 단일 JSON/TXT 파일에서 텍스트 추출
-        2) 임베딩 벡터 생성 + 정규화
-        3) HNSW 인덱스와 메타데이터 저장
-        """
-        # 1) 텍스트 읽기
-        texts = (
-            self.localstorage.get_all_places_from_json(file_path)
-            if file_path.lower().endswith(".json")
-            else self.localstorage.get_all_places_from_txt(file_path)
-        )
-        # 2) 임베딩
-        vectors = self._embed_texts(texts)
- 
-        # 3) HNSW 인덱스 저장
-        self._save_to_vector_store(texts, vectors)   
- 
-        return texts, vectors
- 
-    # ──────────────────────────
-    # 2. 앞에서 k개 파일 임베딩
-    # ──────────────────────────
-    def embed_k_files(self, k: int) -> Tuple[List[str], np.ndarray]:
-        """
-        1) S3에서 첫 k개 파일 가져오기
-        2) 순차 임베딩 + 정규화
-        3) HNSW 인덱스와 메타데이터 저장
-        """
-        keys = self.localstorage.list_first_n_files(self.folder_path, k)
-        all_texts: List[str] = []
-        print(f"[DEBUG] embed_k_files 시작: 처리할 파일 수 = {len(keys)}")
-        for idx, key in enumerate(keys, start=1):
-            print(f"[DEBUG] ({idx}/{len(keys)}) 파일 읽는 중: {key}")
-            # 파일별 텍스트 추출
-            texts = self.localstorage.get_all_places_from_json(key)
-            print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
-            all_texts.extend(texts)
+        """texts 를 self.batch_size 로 잘라가며 임베딩 + L2 정규화"""
+        vec_chunks = []
+        for i in range(0, len(texts), self.batch_size):
+            chunk = texts[i : i + self.batch_size]
+            embs  = self._model.embed_documents(chunk)           # (B, dim)
+            vec_chunks.append(embs)
+        full = np.vstack(vec_chunks).astype("float32")
+        return normalize(full, norm="l2")
 
-        print(f"[DEBUG] 전체 텍스트 개수: {len(all_texts)} — 임베딩 시작")
-        # 임베딩
-        vectors = self._embed_texts(all_texts)
-        print(f"[DEBUG] 임베딩 완료: 벡터 shape = {vectors.shape}")
-
-        # HNSW 인덱스 저장
-        self._save_to_vector_store(all_texts, vectors)
-        print(f"[DEBUG] 인덱스 및 메타데이터 저장 완료")
-
-        return all_texts, vectors
- 
-    # ──────────────────────────
-    # 3. 전체 폴더 임베딩
-    # ──────────────────────────
+    # ───────────────────────────────────────────────
+    # 수정 ② : embed_all() – 배치로 읽되, 벡터는 한 번만 생성
+    # ───────────────────────────────────────────────
     def embed_all(self) -> Tuple[List[str], np.ndarray]:
-        """
-        1) S3 폴더 내 모든 파일 목록 조회
-        2) 파일별로 배치 단위 임베딩 + 정규화
-        3) HNSW 인덱스와 메타데이터 저장
-        """
         file_list = self.localstorage.list_files_in_folder(self.folder_path)
-        all_texts: List[str] = []
-        print(f"[DEBUG] embed_all 시작: 폴더 내 파일 수 = {len(file_list)}")
-        for idx, fp in enumerate(file_list, start=1):
-            print(f"[DEBUG] ({idx}/{len(file_list)}) 파일 읽는 중: {fp}")
-            # 전체 파일 텍스트 추출
-            if fp.lower().endswith(".txt"):
-                texts = self.localstorage.get_all_places_from_predata(fp)
+        print(f"[DEBUG] embed_all 시작: {len(file_list)}개 파일")
 
-            print(f"[DEBUG]   -> 추출된 텍스트 개수: {len(texts)}")
+        all_texts: List[str] = []
+        for idx, fp in enumerate(file_list, 1):
+            if not fp.lower().endswith(".txt"):
+                continue
+            texts = self.localstorage.get_all_places_from_predata(fp)
+            print(f"[DEBUG] ({idx}/{len(file_list)}) {fp}: {len(texts)}개 추출")
             all_texts.extend(texts)
 
-        print(f"[DEBUG] 전체 텍스트 개수: {len(all_texts)} — 임베딩 시작")
-        # 임베딩
-        vectors = self._embed_texts(all_texts)
-        print(f"[DEBUG] 임베딩 완료: 벡터 shape = {vectors.shape}")
+        print(f"[DEBUG] 전체 텍스트 {len(all_texts)}개 — 배치 임베딩 시작")
+        vectors = self._embed_texts(all_texts)      # 내부에서 배치 처리
+        print(f"[DEBUG] 임베딩 완료: shape={vectors.shape}")
 
-        # HNSW 인덱스 & 메타데이터 저장
         self._save_to_vector_store(all_texts, vectors)
-        print(f"[DEBUG] 인덱스 및 메타데이터 저장 완료")
+        print("[DEBUG] create_hnsw_index() 호출 완료")
 
         return all_texts, vectors
- 
+
+    
 # ────────────────────────
 # CLI 테스트
 # ────────────────────────
