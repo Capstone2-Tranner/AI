@@ -29,7 +29,7 @@ class VectorStoreRetriever:
         this_file = Path(__file__).resolve()
         langchain_rag_dir = this_file.parent  # → …/Capstone2/langchain_rag
 
-        self.db_dir = langchain_rag_dir / "utils" / "data" / "vector_db"
+        self.db_dir = langchain_rag_dir / "utils" / "data" / "embedding_data"
 
 
         # 실 파일이 있는 경로로 idx_path를 설정
@@ -82,7 +82,7 @@ class VectorStoreRetriever:
     def retrieve(
         self,
         query: str,
-        top_k: int = 10,
+        top_k: int,
     ) -> List[Dict[str, Any]]:
         """
         주어진 쿼리 문장을 임베딩하여 FAISS에서 유사도가 높은 상위 top_k개의 장소 정보를 반환합니다.

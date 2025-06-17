@@ -1,0 +1,14 @@
+주소         : 대한민국 제주시
+위도, 경도   : 33.294876, 126.204179
+이름         : 전답동
+전체 평점    : 평점 없음
+타입         : transit_station, point_of_interest, establishment
+한 줄 요약 리뷰: 리뷰 없음
+
+주소         : 대한민국 제주시
+위도, 경도   : 33.295062, 126.203939
+이름         : 고산2리 전답동
+전체 평점    : 평점 없음
+타입         : transit_station, point_of_interest, establishment
+한 줄 요약 리뷰: 리뷰 없음
+
